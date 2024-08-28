@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useLoginMutation } from "../../redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../../redux/features/auth/authApi";
 
 const LoginForm = () => {
   const {
