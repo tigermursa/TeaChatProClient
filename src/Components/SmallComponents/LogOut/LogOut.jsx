@@ -9,9 +9,9 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     try {
       await logout({}).unwrap();
-      localStorage.removeItem("user"); // Clear user data from localStorage
-
-      navigate("/login"); // Redirect to login page after logout
+      localStorage.removeItem("user");
+      navigate("/login");
+      toast.success("Logged Out");
     } catch {
       toast.error("Failed to log out. Please try again.");
     }
@@ -26,7 +26,7 @@ const LogoutButton = () => {
       >
         {isLoading ? "Logging out..." : "Logout"}
       </button>
-      <Toaster /> {/* Add Toaster component for displaying notifications */}
+      <Toaster />
     </>
   );
 };

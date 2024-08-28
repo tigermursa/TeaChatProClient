@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 
@@ -21,18 +21,14 @@ const LoginForm = () => {
 
       // Notify user of successful login
       const successMessage = response?.message || "Login successful!";
-      toast.success(successMessage);
 
       // Store user data in localStorage
       localStorage.setItem("user", JSON.stringify(response));
 
       // Clear the form
       reset();
-
-      // Delay navigation by 1 second
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      navigate("/");
+      toast.success(successMessage);
     } catch (error) {
       // Handle API errors
       const errorMessage =
@@ -86,7 +82,6 @@ const LoginForm = () => {
           </button>
         </Link>
       </form>
-      <Toaster />
     </div>
   );
 };

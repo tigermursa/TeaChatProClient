@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Error from "../../../Components/SmallComponents/Error/Error";
 import Loader from "../../../Components/SmallComponents/Loader/Loader";
+import LogoutButton from "../../../Components/SmallComponents/LogOut/LogOut";
 import useAuth from "../../../hooks/useAuth";
 
 const ProfilePage = () => {
@@ -27,10 +28,10 @@ const ProfilePage = () => {
   const userData = currentUser.data;
 
   return (
-    <div className="bg-gray-900 h-screen flex justify-center items-center">
+    <div className="bg-gray-900 h-screen flex flex-col justify-center items-center">
       <div className="bg-white shadow-md rounded-lg p-6 mx-auto text-start max-w-[250px]">
         <div>
-          <img src={userData.userImage} />
+          <img className="rounded-lg" src={userData.userImage} />
         </div>
         <p className="text-lg text-gray-900 mb-4 font-semibold">
           {userData?.work}
@@ -47,6 +48,9 @@ const ProfilePage = () => {
         <p className="text-gray-600">
           <span className="font-semibold">Email:</span> {userData?.email}
         </p>
+      </div>
+      <div>
+        <LogoutButton />
       </div>
     </div>
   );

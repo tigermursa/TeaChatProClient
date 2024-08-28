@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRegisterMutation } from "../../redux/features/auth/authApi";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useRegisterMutation } from "../../../redux/features/auth/authApi";
 
 const SignUpForm = () => {
   const {
@@ -52,7 +53,7 @@ const SignUpForm = () => {
     if (image) {
       saveImage();
     }
-  }, [image, saveImage]);
+  }, [image]);
 
   const password = watch("password");
 
@@ -61,11 +62,9 @@ const SignUpForm = () => {
       const submitData = { ...data, userImage: imageUrl };
       const response = await addData(submitData).unwrap();
       localStorage.setItem("user", JSON.stringify(response));
-
+      reset();
+      navigate("/");
       toast.success("Registration successful!");
-
-      reset(); // Clear the form
-      navigate("/"); // Redirect to home
     } catch (error) {
       const errorMessage =
         error?.data?.error?.message || "Registration failed. Please try again.";
@@ -183,8 +182,6 @@ const SignUpForm = () => {
           {isRegisterLoading || isUploading ? "Signing Up..." : "Sign Up"}
         </button>
       </form>
-
-      <Toaster />
     </div>
   );
 };
