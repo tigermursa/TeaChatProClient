@@ -4,7 +4,7 @@ const useAuth = () => {
   const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = storedUser?._id;
 
-  // Fetch user data using the userId from my localStorage
+  // Fetch user data using the userId from localStorage
   const {
     data: currentUser,
     isLoading,

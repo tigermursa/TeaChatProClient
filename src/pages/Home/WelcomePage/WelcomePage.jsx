@@ -1,7 +1,9 @@
+import ProfilePage from "../ProfilePage/ProfilePage";
+
 const WelcomePage = () => {
   return (
     <div>
-      <p>Hello and Welcome</p>
+      <ProfilePage/>
     </div>
   );
 };
