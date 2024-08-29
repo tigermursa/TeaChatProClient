@@ -1,7 +1,6 @@
 // components/ProfileBar/ProfileBar.js
-
 import { useState } from "react";
-import { FaCog } from "react-icons/fa";
+import { FaCog, FaUser, FaPen, FaPlus, FaSignOutAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
@@ -9,6 +8,7 @@ import { Img } from "react-image";
 import LogoutButton from "../LogOut/LogOut";
 import CreateThought from "../../PagesComponents/Thought/CreateThought";
 import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
+import LogoutSimple from "../LogOut/LogOutSimple";
 
 const ProfileBar = () => {
   const { currentUser, isLoading, isError } = useAuth();
@@ -82,17 +82,19 @@ const ProfileBar = () => {
                     onClick={() =>
                       (window.location.href = `/profile/${user?._id}`)
                     }
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded"
+                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center"
                   >
+                    <FaUser className="mr-2" />
                     Visit Profile
                   </button>
                   <button
                     onClick={handleCreateThoughtClick}
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2"
+                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center"
                   >
+                    <FaPlus className="mr-2" />
                     Create Thought
                   </button>
-                  {/* Replace with an actual thought object or fetch the thought data as needed */}
+
                   <button
                     onClick={() =>
                       handleUpdateThoughtClick({
@@ -100,10 +102,15 @@ const ProfileBar = () => {
                         text: "Current thought text",
                       })
                     }
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2"
+                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center"
                   >
+                    <FaPen className="mr-2" />
                     Update Thought
                   </button>
+                  <div className="px-2 py-1 rounded flex items-center">
+                    <FaSignOutAlt className="mr-2 hover:bg-gray-700  " />
+                    <LogoutSimple />
+                  </div>
                 </div>
               )}
             </div>
