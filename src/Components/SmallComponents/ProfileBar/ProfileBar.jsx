@@ -1,12 +1,16 @@
+import { useState } from "react";
+import { FaCog } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { Img } from "react-image";
 import LogoutButton from "../LogOut/LogOut";
+import CreateThought from "../../PagesComponents/Thought/CreateThought";
+
 const ProfileBar = () => {
   const { currentUser, isLoading, isError } = useAuth();
-
-  console.log(currentUser);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCreateThoughtOpen, setIsCreateThoughtOpen] = useState(false);
 
   if (isLoading) {
     return (
@@ -26,29 +30,80 @@ const ProfileBar = () => {
 
   const user = currentUser.data;
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleCreateThoughtClick = () => {
+    setIsCreateThoughtOpen(true);
+    setIsMenuOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    setIsCreateThoughtOpen(false);
+  };
+
   return (
     <>
-      <div className="flex justify-between">
-        <div className="flex items-center gap-2 pt-5 ps-2 ">
+      <div className="relative flex justify-between items-center">
+        <div className="flex items-center gap-2 pt-5 ps-2">
           <Img
             src={user?.userImage}
             className="w-[80px] h-[80px] object-cover rounded-full border-[4px] border-primary"
-            alt="user profile "
-            loader={
-              <div>
-                <Loader />
-              </div>
-            }
+            alt="user profile"
           />
-          <div className="text-gray-200 font-semibold">
-            <p className="text-lg md:text-2xl">{user?.username}</p>
-            <p className="text-sm  md:text-lg">{user?.work}</p>
+          <div className="text-gray-200 font-semibold flex items-center gap-2">
+            <div>
+              <p className="text-lg md:text-2xl">{user?.username}</p>
+              <p className="text-sm md:text-lg">{user?.work}</p>
+            </div>
+            <div className="relative">
+              <FaCog
+                onClick={handleMenuToggle}
+                className="text-gray-200 cursor-pointer"
+                size={24}
+              />
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48">
+                  <button
+                    onClick={() =>
+                      (window.location.href = `/profile/${user?._id}`)
+                    }
+                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded"
+                  >
+                    Visit Profile
+                  </button>
+                  <button
+                    onClick={handleCreateThoughtClick}
+                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2"
+                  >
+                    Thought
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div>
           <LogoutButton />
         </div>
       </div>
+
+      {/* Create Thought Modal */}
+      {isCreateThoughtOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-gray-800  bg-opacity-95 p-6 rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CreateThought onClose={handleCloseModal} />
+          </div>
+        </div>
+      )}
     </>
   );
 };

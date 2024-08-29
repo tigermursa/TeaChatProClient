@@ -2,9 +2,19 @@ import { baseApi } from "../../api/baseApi";
 
 const thoughtApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    //posting thought / Create
+    addThought: builder.mutation({
+      query: (data) => ({
+        url: `/api/thought/create`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["ChatApp"],
+    }),
+
     // Get all users
     getAllThought: builder.query({
-      query: () => `/api/v1/thought/get`,
+      query: () => `/api/thought/get`,
       method: "GET",
       providesTags: ["ChatApp"],
     }),
@@ -12,7 +22,7 @@ const thoughtApi = baseApi.injectEndpoints({
     // Delete user
     deleteThought: builder.mutation({
       query: (id) => ({
-        url: `/api/v1/thought/${id}`,
+        url: `/api/thought/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ChatApp"],
@@ -21,7 +31,7 @@ const thoughtApi = baseApi.injectEndpoints({
     // Update user
     updateThought: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/v1/thought/${id}`,
+        url: `/api/thought/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -36,6 +46,7 @@ export const {
   useGetAllThoughtQuery,
   useDeleteThoughtMutation,
   useUpdateThoughtMutation,
+  useAddThoughtMutation,
 } = thoughtApi;
 
 export default thoughtApi;
