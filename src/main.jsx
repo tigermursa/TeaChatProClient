@@ -5,13 +5,25 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/router.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Toaster />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss={true}
+        draggable={false}
+        pauseOnHover={true}
+        theme="light"
+        closeButton={false}
+      />
     </Provider>
   </StrictMode>
 );

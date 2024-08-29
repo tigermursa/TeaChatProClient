@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -5,7 +6,7 @@ import {
   useGetThoughtByUserIdQuery,
   useUpdateThoughtMutation,
 } from "../../../redux/features/thought/thoughtApi";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const UpdateThought = ({ thoughtData, onClose, user }) => {
   const id = user?._id;
@@ -37,7 +38,6 @@ const UpdateThought = ({ thoughtData, onClose, user }) => {
       reset(); // Reset form values
       toast.success("Thought updated successfully!");
       onClose(); // Close the modal on success
-      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error("Failed to update thought. Please try again.");
     }

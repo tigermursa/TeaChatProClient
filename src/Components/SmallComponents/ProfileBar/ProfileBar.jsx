@@ -1,5 +1,4 @@
-// components/ProfileBar/ProfileBar.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCog, FaUser, FaPen, FaPlus, FaSignOutAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Error from "../Error/Error";
@@ -15,7 +14,22 @@ const ProfileBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCreateThoughtOpen, setIsCreateThoughtOpen] = useState(false);
   const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentThought, setCurrentThought] = useState(null);
+
+  useEffect(() => {
+    if (isCreateThoughtOpen || isUpdateThoughtOpen) {
+      setIsModalVisible(true);
+    }
+  }, [isCreateThoughtOpen, isUpdateThoughtOpen]);
+
+  const closeModalWithAnimation = () => {
+    setIsModalVisible(false);
+    setTimeout(() => {
+      setIsCreateThoughtOpen(false);
+      setIsUpdateThoughtOpen(false);
+    }, 300); // Delay to match the animation duration
+  };
 
   if (isLoading) {
     return (
@@ -48,11 +62,6 @@ const ProfileBar = () => {
     setCurrentThought(thought);
     setIsUpdateThoughtOpen(true);
     setIsMenuOpen(false);
-  };
-
-  const handleCloseModal = () => {
-    setIsCreateThoughtOpen(false);
-    setIsUpdateThoughtOpen(false);
   };
 
   return (
@@ -124,14 +133,18 @@ const ProfileBar = () => {
       {/* Create Thought Modal */}
       {isCreateThoughtOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20"
-          onClick={handleCloseModal}
+          className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20 transition-opacity duration-300 ${
+            isModalVisible ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={closeModalWithAnimation}
         >
           <div
-            className="bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg"
+            className={`bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg transition-transform duration-300 transform ${
+              isModalVisible ? "scale-100" : "scale-90"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <CreateThought onClose={handleCloseModal} />
+            <CreateThought onClose={closeModalWithAnimation} />
           </div>
         </div>
       )}
@@ -139,16 +152,20 @@ const ProfileBar = () => {
       {/* Update Thought Modal */}
       {isUpdateThoughtOpen && currentThought && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20"
-          onClick={handleCloseModal}
+          className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20 transition-opacity duration-300 ${
+            isModalVisible ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={closeModalWithAnimation}
         >
           <div
-            className="bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg"
+            className={`bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg transition-transform duration-300 transform ${
+              isModalVisible ? "scale-100" : "scale-90"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             <UpdateThought
               thoughtData={currentThought}
-              onClose={handleCloseModal}
+              onClose={closeModalWithAnimation}
               user={user}
             />
           </div>

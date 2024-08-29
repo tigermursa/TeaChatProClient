@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify"; // Remove ToastContainer
 import { useRegisterMutation } from "../../../redux/features/auth/authApi";
 
 const SignUpForm = () => {
@@ -135,24 +133,10 @@ const SignUpForm = () => {
         )}
 
         <input
-          {...register("work", { required: "Work is required" })}
-          type="text"
-          placeholder="Work"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        {errors.work && (
-          <span className="text-red-500">{errors.work.message}</span>
-        )}
-
-        <input
-          type="file"
-          id="userImage"
-          onChange={(e) => setImage(e.target.files?.item(0) || null)}
-          className="mt-1 p-2 border rounded-md w-full"
-        />
-
-        <input
-          {...register("password", { required: "Password is required" })}
+          {...register("password", {
+            required: "Password is required",
+            minLength: { value: 6, message: "Minimum length is 6 characters" },
+          })}
           type="password"
           placeholder="Password"
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -163,7 +147,7 @@ const SignUpForm = () => {
 
         <input
           {...register("confirmPassword", {
-            required: "Confirm Password is required",
+            required: "Confirm password is required",
             validate: (value) => value === password || "Passwords do not match",
           })}
           type="password"
@@ -174,12 +158,24 @@ const SignUpForm = () => {
           <span className="text-red-500">{errors.confirmPassword.message}</span>
         )}
 
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Profile Image:
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            className="w-full"
+          />
+        </div>
+
         <button
           type="submit"
-          className="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
+          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
           disabled={isRegisterLoading || isUploading}
         >
-          {isRegisterLoading || isUploading ? "Signing Up..." : "Sign Up"}
+          {isRegisterLoading || isUploading ? "Registering..." : "Register Now"}
         </button>
       </form>
     </div>

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
 

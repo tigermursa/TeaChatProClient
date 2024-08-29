@@ -1,4 +1,4 @@
-import toast, { Toaster } from "react-hot-toast"; // Import react-hot-toast
+import { toast } from "react-toastify"; // Import react-toastify
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../../../redux/features/auth/authApi";
 
@@ -11,7 +11,7 @@ const LogoutButton = () => {
       await logout({}).unwrap();
       localStorage.removeItem("user");
       navigate("/login");
-      toast.success("Logged Out");
+      toast.success("Logged out successfully!");
     } catch {
       toast.error("Failed to log out. Please try again.");
     }
@@ -26,7 +26,6 @@ const LogoutButton = () => {
       >
         {isLoading ? "Logging out..." : "Logout"}
       </button>
-      <Toaster />
     </>
   );
 };
