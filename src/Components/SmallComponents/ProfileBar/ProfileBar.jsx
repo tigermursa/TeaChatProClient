@@ -72,7 +72,7 @@ const ProfileBar = () => {
             <div className="relative">
               <FaCog
                 onClick={handleMenuToggle}
-                className="text-gray-200 cursor-pointer"
+                className="text-gray-200 cursor-pointer animate-spin"
                 size={24}
               />
               {/* Dropdown Menu */}
