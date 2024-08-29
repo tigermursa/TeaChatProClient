@@ -73,7 +73,7 @@ const LoginForm = () => {
         </a>
 
         <div className="border-t border-gray-300 my-4"></div>
-        <Link to={"/signup"}>
+        <Link to={"/sign-up"}>
           <button
             type="button"
             className="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"

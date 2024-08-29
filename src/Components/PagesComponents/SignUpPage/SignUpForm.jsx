@@ -26,17 +26,17 @@ const SignUpForm = () => {
       setIsUploading(true);
       const data = new FormData();
       data.append("file", image);
-      data.append(
-        "upload_preset",
-        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-      );
+      data.append("upload_preset", "taskBuddy");
       data.append("cloud_name", "dvwmhlyd6");
 
       try {
-        const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-          method: "POST",
-          body: data,
-        });
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dvwmhlyd6/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
 
         const cloudData = await res.json();
         setImageUrl(cloudData.url);

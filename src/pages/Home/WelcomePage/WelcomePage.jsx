@@ -1,9 +1,9 @@
-import ProfilePage from "../ProfilePage/ProfilePage";
+import ProfileBar from "../../../Components/SmallComponents/ProfileBar/ProfileBar";
 
 const WelcomePage = () => {
   return (
-    <div>
-      <ProfilePage/>
+    <div className="bg-welcome-background bg-cover bg-center h-screen ">
+      <ProfileBar />
     </div>
   );
 };

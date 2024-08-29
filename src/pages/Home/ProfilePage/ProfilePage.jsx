@@ -28,24 +28,24 @@ const ProfilePage = () => {
   const userData = currentUser.data;
 
   return (
-    <div className="bg-gray-900 h-screen flex flex-col justify-center items-center">
-      <div className="bg-white shadow-md rounded-lg p-6 mx-auto text-start max-w-[250px]">
+    <div className="">
+      <div className="text-white shadow-md rounded-lg p-6  text-start max-w-[250px]">
         <div>
           <img className="rounded-lg" src={userData.userImage} />
         </div>
-        <p className="text-lg text-gray-900 mb-4 font-semibold">
+        <p className="text-lg  mb-4 font-semibold">
           {userData?.work}
         </p>
-        <p className="text-gray-600 mb-2">
+        <p className=" mb-2">
           <span className="font-semibold">Age:</span> {userData?.age}
         </p>
-        <p className="text-gray-600 mb-2">
+        <p className=" mb-2">
           <span className="font-semibold">Location:</span> {userData?.location}
         </p>
-        <p className="text-gray-600 mb-2">
+        <p className=" mb-2">
           <span className="font-semibold">Gender:</span> {userData?.gender}
         </p>
-        <p className="text-gray-600">
+        <p className="">
           <span className="font-semibold">Email:</span> {userData?.email}
         </p>
       </div>
