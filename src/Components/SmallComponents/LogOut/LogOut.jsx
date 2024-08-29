@@ -21,7 +21,7 @@ const LogoutButton = () => {
     <>
       <button
         onClick={handleLogout}
-        className="text-gray-600 hover:text-gray-300 mt-10 border hover:border-blue-600 border-blue-800 p-2 rounded-xl"
+        className="text-gray-200 font-semibold hover:text-gray-300 mt-10 border-[2px] hover:border-primaryDark border-primary p-2 rounded-xl me-5"
         disabled={isLoading}
       >
         {isLoading ? "Logging out..." : "Logout"}

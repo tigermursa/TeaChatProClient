@@ -3,7 +3,9 @@ import ProfileBar from "../../../Components/SmallComponents/ProfileBar/ProfileBa
 const WelcomePage = () => {
   return (
     <div className="bg-welcome-background bg-cover bg-center h-screen ">
-      <ProfileBar />
+      <div className="overlay h-screen">
+        <ProfileBar />
+      </div>
     </div>
   );
 };
