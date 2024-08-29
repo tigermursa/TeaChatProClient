@@ -1,3 +1,5 @@
+// components/ProfileBar/ProfileBar.js
+
 import { useState } from "react";
 import { FaCog } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
@@ -6,11 +8,14 @@ import Loader from "../Loader/Loader";
 import { Img } from "react-image";
 import LogoutButton from "../LogOut/LogOut";
 import CreateThought from "../../PagesComponents/Thought/CreateThought";
+import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
 
 const ProfileBar = () => {
   const { currentUser, isLoading, isError } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCreateThoughtOpen, setIsCreateThoughtOpen] = useState(false);
+  const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
+  const [currentThought, setCurrentThought] = useState(null);
 
   if (isLoading) {
     return (
@@ -39,8 +44,15 @@ const ProfileBar = () => {
     setIsMenuOpen(false);
   };
 
+  const handleUpdateThoughtClick = (thought) => {
+    setCurrentThought(thought);
+    setIsUpdateThoughtOpen(true);
+    setIsMenuOpen(false);
+  };
+
   const handleCloseModal = () => {
     setIsCreateThoughtOpen(false);
+    setIsUpdateThoughtOpen(false);
   };
 
   return (
@@ -78,7 +90,19 @@ const ProfileBar = () => {
                     onClick={handleCreateThoughtClick}
                     className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2"
                   >
-                    Thought
+                    Create Thought
+                  </button>
+                  {/* Replace with an actual thought object or fetch the thought data as needed */}
+                  <button
+                    onClick={() =>
+                      handleUpdateThoughtClick({
+                        id: "exampleId",
+                        text: "Current thought text",
+                      })
+                    }
+                    className="block w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2"
+                  >
+                    Update Thought
                   </button>
                 </div>
               )}
@@ -97,10 +121,29 @@ const ProfileBar = () => {
           onClick={handleCloseModal}
         >
           <div
-            className="bg-gray-800  bg-opacity-95 p-6 rounded-lg shadow-lg"
+            className="bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <CreateThought onClose={handleCloseModal} />
+          </div>
+        </div>
+      )}
+
+      {/* Update Thought Modal */}
+      {isUpdateThoughtOpen && currentThought && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-20"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-gray-800 bg-opacity-95 p-6 rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <UpdateThought
+              thoughtData={currentThought}
+              onClose={handleCloseModal}
+              user={user}
+            />
           </div>
         </div>
       )}
