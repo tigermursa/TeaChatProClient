@@ -1,15 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { Img } from "react-image";
 import useAuth from "../../../hooks/useAuth";
-import { useGetNotMyFriendQuery } from "../../../redux/features/friend/friendApi";
+import {
+  useGetNotMyFriendQuery,
+  useSentFriendRequestMutation,
+} from "../../../redux/features/friend/friendApi";
+import { toast } from "react-toastify"; // Import Toastify
 
 const PeopleYouMayKnow = () => {
   const { currentUser } = useAuth();
-  const id = currentUser?.data._id;
+  const id = currentUser?.data._id; // senderId
   const { data } = useGetNotMyFriendQuery(id);
 
-  const handleAddFriend = (userId) => {
-    // Add your logic to handle the add friend request here
+  const [sentRequest] = useSentFriendRequestMutation();
+
+  const handleSendFriendRequest = async (receiverId) => {
+    try {
+      await sentRequest({ senderId: id, receiverId }).unwrap();
+      toast.success("Friend request sent successfully ✔");
+    } catch (error) {
+      toast.error("Failed to send friend request. Please try again.");
+    }
   };
 
   return (
@@ -21,7 +32,7 @@ const PeopleYouMayKnow = () => {
         {data?.data?.map((user) => (
           <div
             key={user?._id}
-            className="bg-gray-800 bg-opacity-40  border border-primary rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 w-[180px]"
+            className="bg-gray-800 bg-opacity-40 border border-primary rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 w-[180px]"
           >
             <Img
               src={user?.userImage}
@@ -33,7 +44,7 @@ const PeopleYouMayKnow = () => {
                 {user?.username}
               </h3>
               <button
-                onClick={() => handleAddFriend(user?._id)}
+                onClick={() => handleSendFriendRequest(user?._id)}
                 className="px-4 py-2 bg-primary text-white font-semibold rounded-full hover:bg-primaryDark transition duration-200"
               >
                 Add Friend
