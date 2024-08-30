@@ -17,7 +17,7 @@ const ProfileBar = () => {
   const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentThought, setCurrentThought] = useState(null);
-
+  console.log(currentUser);
   useEffect(() => {
     if (isCreateThoughtOpen || isUpdateThoughtOpen) {
       setIsModalVisible(true);
