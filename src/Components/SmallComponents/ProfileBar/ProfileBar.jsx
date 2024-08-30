@@ -8,6 +8,7 @@ import LogoutButton from "../LogOut/LogOut";
 import CreateThought from "../../PagesComponents/Thought/CreateThought";
 import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
 import LogoutSimple from "../LogOut/LogOutSimple";
+import { Link } from "react-router-dom";
 
 const ProfileBar = () => {
   const { currentUser, isLoading, isError } = useAuth();
@@ -87,15 +88,12 @@ const ProfileBar = () => {
               {/* Dropdown Menu */}
               {isMenuOpen && (
                 <div className="absolute top-full -right-44 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48">
-                  <button
-                    onClick={() =>
-                      (window.location.href = `/profile/${user?._id}`)
-                    }
-                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3"
-                  >
-                    <FaUser className="mr-2" />
-                    Visit Profile
-                  </button>
+                  <Link to={"/profile"}>
+                    <button className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3">
+                      <FaUser className="mr-2" />
+                      My Profile
+                    </button>
+                  </Link>
                   <button
                     onClick={handleCreateThoughtClick}
                     className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center mb-3"

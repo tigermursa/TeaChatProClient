@@ -3,9 +3,11 @@ import { baseApi } from "../../api/baseApi";
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // Get all users
-    getAllUser: builder.query({
-      query: () => `/api/v2/user/get`,
-      method: "GET",
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `/api/v2/user/get`,
+        method: "GET",
+      }),
       providesTags: ["ChatApp"],
     }),
 
@@ -33,7 +35,7 @@ const userApi = baseApi.injectEndpoints({
 
 // Export hooks for using the endpoints in components
 export const {
-  useGetAllUserQuery,
+  useGetAllUsersQuery,
   useDeleteUserMutation,
   useUpdateUserMutation,
 } = userApi;
