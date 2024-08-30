@@ -86,19 +86,19 @@ const ProfileBar = () => {
               />
               {/* Dropdown Menu */}
               {isMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48">
+                <div className="absolute top-full -right-44 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48">
                   <button
                     onClick={() =>
                       (window.location.href = `/profile/${user?._id}`)
                     }
-                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center"
+                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3"
                   >
                     <FaUser className="mr-2" />
                     Visit Profile
                   </button>
                   <button
                     onClick={handleCreateThoughtClick}
-                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center"
+                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center mb-3"
                   >
                     <FaPlus className="mr-2" />
                     Create Thought
@@ -111,13 +111,13 @@ const ProfileBar = () => {
                         text: "Current thought text",
                       })
                     }
-                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center"
+                    className=" w-full text-left px-2 py-1 hover:bg-gray-700 rounded mt-2 flex items-center mb-3"
                   >
                     <FaPen className="mr-2" />
                     Update Thought
                   </button>
-                  <div className="px-2 py-1 rounded flex items-center">
-                    <FaSignOutAlt className="mr-2 hover:bg-gray-700  " />
+                  <div className="px-2 py-1 rounded flex items-center hover:bg-gray-700 ">
+                    <FaSignOutAlt className="mr-2   " />
                     <LogoutSimple />
                   </div>
                 </div>
