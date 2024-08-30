@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ProfilePage from "../pages/Home/ProfilePage/ProfilePage";
+import ChatDashboard from "../Components/Conversation/ChatDashboard/ChatDashboard";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  {
+    path: "chat",
+    element: <ChatDashboard />,
   },
 ]);
 

@@ -118,7 +118,15 @@ const SignUpForm = () => {
         {errors.location && (
           <span className="text-red-500">{errors.location.message}</span>
         )}
-
+        <input
+          {...register("work", { required: "Work is required" })}
+          type="text"
+          placeholder="Work"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.work && (
+          <span className="text-red-500">{errors.work.message}</span>
+        )}
         <input
           {...register("age", {
             required: "Age is required",
