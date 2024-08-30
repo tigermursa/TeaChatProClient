@@ -5,6 +5,7 @@ import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ProfilePage from "../pages/Home/ProfilePage/ProfilePage";
 import ChatDashboard from "../Components/Conversation/ChatDashboard/ChatDashboard";
+import PeopleYouMayKnow from "../Components/PagesComponents/PeopleYouMayKnow/PeopleYouMayKnow";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "chat",
     element: <ChatDashboard />,
+  },
+  {
+    path: "test",
+    element: <PeopleYouMayKnow />,
   },
 ]);
 
