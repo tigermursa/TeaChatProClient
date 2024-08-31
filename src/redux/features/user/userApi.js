@@ -11,6 +11,15 @@ const userApi = baseApi.injectEndpoints({
       providesTags: ["ChatApp"],
     }),
 
+    // Get single users
+    getSingleUsers: builder.query({
+      query: (id) => ({
+        url: `/api/v2/user/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["ChatApp"],
+    }),
+
     // Delete user
     deleteUser: builder.mutation({
       query: ({ id }) => ({
@@ -29,6 +38,17 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["ChatApp"],
     }),
+
+    // Get users by ID array
+    getUserByIDArray: builder.query({
+      query: (userIds) => ({
+        url: `/api/v2/user/array`,
+        method: "POST",
+        body: { userIds }, // Send the array of IDs in the body
+      }),
+      providesTags: (result, error, userIds) =>
+        result ? [{ type: "ChatApp", id: userIds.join(",") }] : ["ChatApp"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -38,6 +58,8 @@ export const {
   useGetAllUsersQuery,
   useDeleteUserMutation,
   useUpdateUserMutation,
+  useGetSingleUsersQuery,
+  useGetUserByIDArrayQuery,
 } = userApi;
 
 export default userApi;

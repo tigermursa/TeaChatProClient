@@ -17,7 +17,7 @@ const PeopleYouMayKnow = () => {
   const handleSendFriendRequest = async (receiverId) => {
     try {
       await sentRequest({ senderId: id, receiverId }).unwrap();
-      toast.success("Friend request sent successfully ✔");
+      toast.success("Friend request sent successfully");
     } catch (error) {
       toast.error("Failed to send friend request. Please try again.");
     }
@@ -25,7 +25,7 @@ const PeopleYouMayKnow = () => {
 
   return (
     <div className="p-6 flex justify-center items-center flex-col pt-44">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">
+      <h2 className="text-3xl font-bold mb-6 text-gray-100">
         People You May Know
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

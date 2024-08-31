@@ -4,11 +4,11 @@ import useAuth from "../../../hooks/useAuth";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { Img } from "react-image";
-import LogoutButton from "../LogOut/LogOut";
 import CreateThought from "../../PagesComponents/Thought/CreateThought";
 import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
 import LogoutSimple from "../LogOut/LogOutSimple";
 import { Link } from "react-router-dom";
+import FriendRequests from "../Friend/FriendRequests";
 
 const ProfileBar = () => {
   const { currentUser, isLoading, isError } = useAuth();
@@ -17,7 +17,7 @@ const ProfileBar = () => {
   const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentThought, setCurrentThought] = useState(null);
-  console.log(currentUser);
+  // console.log(currentUser);
   useEffect(() => {
     if (isCreateThoughtOpen || isUpdateThoughtOpen) {
       setIsModalVisible(true);
@@ -124,9 +124,11 @@ const ProfileBar = () => {
           </div>
         </div>
         <div>
-          <LogoutButton />
+          <FriendRequests  currentUser={currentUser}/>
         </div>
       </div>
+
+      {/* Modals */}
 
       {/* Create Thought Modal */}
       {isCreateThoughtOpen && (
