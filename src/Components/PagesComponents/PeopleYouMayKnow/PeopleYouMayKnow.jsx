@@ -19,7 +19,7 @@ const PeopleYouMayKnow = () => {
       await sentRequest({ senderId: id, receiverId }).unwrap();
       toast.success("Friend request sent successfully");
     } catch (error) {
-      toast.error("Failed to send friend request. Please try again.");
+      toast.error(error?.data?.message);
     }
   };
 
