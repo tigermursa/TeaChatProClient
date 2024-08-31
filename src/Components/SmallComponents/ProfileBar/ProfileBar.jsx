@@ -67,7 +67,7 @@ const ProfileBar = () => {
 
   return (
     <>
-      <div className="relative flex justify-between items-center">
+      <div className="relative flex justify-start gap-6 items-center">
         <div className="flex items-center gap-2 pt-5 ps-2">
           <Img
             src={user?.userImage}
