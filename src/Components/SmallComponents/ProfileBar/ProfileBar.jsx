@@ -8,10 +8,10 @@ import CreateThought from "../../PagesComponents/Thought/CreateThought";
 import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
 import LogoutSimple from "../LogOut/LogOutSimple";
 import { Link } from "react-router-dom";
-import FriendRequests from "../Friend/FriendRequests";
+import SmartNav from "../SmartNav/SmartNav";
 
 const ProfileBar = () => {
-  const { currentUser, isLoading, isError,refetch } = useAuth();
+  const { currentUser, isLoading, isError, refetch } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCreateThoughtOpen, setIsCreateThoughtOpen] = useState(false);
   const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
@@ -124,7 +124,7 @@ const ProfileBar = () => {
           </div>
         </div>
         <div>
-          <FriendRequests  currentUser={currentUser} refetchUser={refetch}/>
+          <SmartNav currentUser={currentUser} refetch={refetch} />
         </div>
       </div>
 

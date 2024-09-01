@@ -13,6 +13,7 @@ import Loader from "../../../Components/SmallComponents/Loader/Loader";
 import useAuth from "../../../hooks/useAuth";
 import HomeButton from "../../../Components/SmallComponents/HomeButton/HomeButton";
 import UpdateProfile from "./UpdateProfile";
+import MyFriends from "../../../Components/SmallComponents/MyFriends/MyFriends";
 
 const ProfilePage = () => {
   const { currentUser, isLoading, isError, refetch } = useAuth();
@@ -37,7 +38,7 @@ const ProfilePage = () => {
     setShowModal(false);
   };
 
-  console.log(currentUser);
+  //console.log(currentUser);
 
   if (isLoading) {
     return (
@@ -127,9 +128,13 @@ const ProfilePage = () => {
         </div>
       </div>
 
+      <div className="mt-10">
+        <MyFriends currentUser={currentUser}/>
+      </div>
+
       {/* Home Button */}
       <div className="mt-6">
-        <HomeButton />
+        <HomeButton  />
       </div>
 
       {/* Update Profile Modal */}

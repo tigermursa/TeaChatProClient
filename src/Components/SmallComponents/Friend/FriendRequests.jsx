@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
-import { FaUserFriends, FaCheck, FaTimes } from "react-icons/fa";
+import { FaCheck, FaTimes } from "react-icons/fa";
+import { IoIosPersonAdd } from "react-icons/io";
 import {
   useAcceptFriendRequestMutation,
   useGetUserByIDArrayQuery,
@@ -21,9 +22,6 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
     friendRequestIds,
     {
       skip: !shouldFetch,
-      refetchOnFocus: true,
-      refetchOnReconnect: true,
-      refetchOnMountOrArgChange: true, // Ensures the data is always refetched when component mounts
     }
   );
 
@@ -93,12 +91,12 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
   // console.log(totalFriendRequest);
   return (
     <div className="relative">
-      <FaUserFriends
+      <IoIosPersonAdd
         className="text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
       {totalFriendRequest > 0 && (
-        <div className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full bg-red-500 text-white text-xs">
+        <div className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-primary text-white text-xs">
           {totalFriendRequest}
         </div>
       )}
