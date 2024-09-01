@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import FriendRequests from "../Friend/FriendRequests";
 
 const ProfileBar = () => {
-  const { currentUser, isLoading, isError } = useAuth();
+  const { currentUser, isLoading, isError,refetch } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCreateThoughtOpen, setIsCreateThoughtOpen] = useState(false);
   const [isUpdateThoughtOpen, setIsUpdateThoughtOpen] = useState(false);
@@ -124,7 +124,7 @@ const ProfileBar = () => {
           </div>
         </div>
         <div>
-          <FriendRequests  currentUser={currentUser}/>
+          <FriendRequests  currentUser={currentUser} refetchUser={refetch}/>
         </div>
       </div>
 

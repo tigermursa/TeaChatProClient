@@ -6,8 +6,8 @@ import {
   useGetUserByIDArrayQuery,
   useRejectFriendRequestMutation,
 } from "../../../redux/features/friend/friendApi";
-
-const FriendRequests = ({ currentUser }) => {
+import { BiLoaderCircle } from "react-icons/bi";
+const FriendRequests = ({ currentUser, refetchUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [friendRequestUsers, setFriendRequestUsers] = useState([]);
   const dropdownRef = useRef(null);
@@ -17,7 +17,7 @@ const FriendRequests = ({ currentUser }) => {
 
   const shouldFetch = friendRequestIds.length > 0;
 
-  const { data, error, isLoading, refetch } = useGetUserByIDArrayQuery(
+  const { data, error, isLoading } = useGetUserByIDArrayQuery(
     friendRequestIds,
     {
       skip: !shouldFetch,
@@ -38,9 +38,6 @@ const FriendRequests = ({ currentUser }) => {
 
   const handleIconClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    if (!isDropdownOpen) {
-      refetch();
-    }
   };
 
   const handleAccept = async (senderId) => {
@@ -49,6 +46,7 @@ const FriendRequests = ({ currentUser }) => {
       setFriendRequestUsers((prevUsers) =>
         prevUsers.filter((user) => user._id !== senderId)
       );
+      refetchUser();
     } catch (error) {
       console.error("Error accepting friend request:", error);
     }
@@ -60,6 +58,7 @@ const FriendRequests = ({ currentUser }) => {
       setFriendRequestUsers((prevUsers) =>
         prevUsers.filter((user) => user._id !== senderId)
       );
+      refetchUser();
     } catch (error) {
       console.error("Error rejecting friend request:", error);
     }
@@ -79,24 +78,28 @@ const FriendRequests = ({ currentUser }) => {
   }, []);
 
   if (isLoading) {
-    return <p className="text-white">Loading...</p>;
+    return (
+      <p className="text-white">
+        <BiLoaderCircle />
+      </p>
+    );
   }
 
   if (error) {
     console.error("Error fetching friend request users:", error);
   }
+  const totalFriendRequest = friendRequestIds.length;
 
-  const numberOfRequests = friendRequestUsers.length;
-
+  // console.log(totalFriendRequest);
   return (
     <div className="relative">
       <FaUserFriends
         className="text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
-      {numberOfRequests > 0 && (
+      {totalFriendRequest > 0 && (
         <div className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full bg-red-500 text-white text-xs">
-          {numberOfRequests}
+          {totalFriendRequest}
         </div>
       )}
 

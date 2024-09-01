@@ -9,13 +9,14 @@ import { toast } from "react-toastify"; // Import Toastify
 const PeopleYouMayKnow = () => {
   const { currentUser, refetch } = useAuth();
   const id = currentUser?.data._id; // senderId
-  const { data } = useGetNotMyFriendQuery(id);
+  const { data, refetch: fetchAgain } = useGetNotMyFriendQuery(id);
   const [sentRequest] = useSentFriendRequestMutation();
 
   const handleSendFriendRequest = async (receiverId) => {
     try {
       await sentRequest({ senderId: id, receiverId }).unwrap();
       refetch();
+      fetchAgain();
       toast.success("Friend request sent successfully");
     } catch (error) {
       toast.error(error?.data?.message);
