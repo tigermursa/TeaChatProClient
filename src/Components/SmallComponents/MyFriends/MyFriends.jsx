@@ -15,6 +15,7 @@ const MyFriends = ({ currentUser }) => {
     skip: !shouldFetch,
   });
 
+  // console.log(currentUser)
   const handleOpen = () => {
     setShouldFetch(true); // Trigger the fetching of friends
     setIsOpen(true);
@@ -67,11 +68,11 @@ const MyFriends = ({ currentUser }) => {
                 <FaTimes size={20} />
               </button>
               <h2 className="text-2xl mb-4">My Friends</h2>
-              
+
               {/* Loading and Error States */}
               {isLoading && <p>Loading...</p>}
               {error && <p>Error loading friends</p>}
-              
+
               {/* Display Friends Data */}
               {data && data?.data?.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

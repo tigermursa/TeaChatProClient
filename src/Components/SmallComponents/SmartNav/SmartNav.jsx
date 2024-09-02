@@ -11,7 +11,7 @@ const SmartNav = ({ currentUser, refetch }) => {
       <FriendRequests currentUser={currentUser} refetchUser={refetch} />
       <FaGlobeAsia className="text-2xl text-white cursor-pointer" />
       <FindFriends currentUser={currentUser} refetchUser={refetch} />
-      <MyFriends/>
+      <MyFriends currentUser={currentUser} />
     </div>
   );
 };
