@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
-import "./Chatdashboard.css";
 import { IoClose } from "react-icons/io5";
 import ConversationArea from "../ConversationArea/ConversationArea";
 import AvailableUsers from "../AvaiabaleUsers/AvailableUsers";
 import useAuth from "../../../hooks/useAuth";
 import Loader from "../../SmallComponents/Loader/Loader";
-import Error from "../../SmallComponents/Error/Error";
-
+import "./ChatDashboard.css";
+import { motion } from "framer-motion";
 const ChatDashboard = () => {
   const { currentUser, isLoading, isError } = useAuth();
 
@@ -18,9 +17,10 @@ const ChatDashboard = () => {
     email: currentUser?.data?.email,
   };
 
+  const friendsArray = currentUser?.data?.friends || [];
+
   const BASE_URL = "http://localhost:5000"; //! DON'T FORGET
 
-  // eslint-disable-next-line no-unused-vars
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState({});
   const [message, setMessage] = useState("");
@@ -31,7 +31,7 @@ const ChatDashboard = () => {
   const messageRef = useRef(null);
   const [activeUsers, setActiveUsers] = useState([]);
   const [unreadMessages, setUnreadMessages] = useState({});
-  console.log(message);
+
   // Initialize Socket connection
   useEffect(() => {
     const socketInstance = io(BASE_URL);
@@ -89,6 +89,8 @@ const ChatDashboard = () => {
 
   // Fetch conversations for the logged-in user
   useEffect(() => {
+    if (!user?.id) return; // Add this line to ensure user.id is defined
+
     const fetchConversations = async () => {
       try {
         const res = await fetch(`${BASE_URL}/api/conversations/${user.id}`);
@@ -99,10 +101,12 @@ const ChatDashboard = () => {
       }
     };
     fetchConversations();
-  }, [user.id]);
+  }, [user?.id]);
 
   // Fetch all users except the logged-in user
   useEffect(() => {
+    if (!user?.id) return; // Add this line to ensure user.id is defined
+
     const fetchUsers = async () => {
       try {
         const res = await fetch(`${BASE_URL}/api/users/${user?.id}`);
@@ -184,36 +188,29 @@ const ChatDashboard = () => {
     setSelectedUser(null); // Ensure selectedUser is reset
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-
-  // if (isError) {
-  //   return (
-  //     <div>
-  //       <Error />
-  //     </div>
-  //   );
-  // }
   return (
-    <div>
-      {/* Available Users Section */}
-      <div className="">
-        <AvailableUsers
-          users={users}
-          handleUserSelect={handleUserSelect}
-          unreadMessages={unreadMessages}
-          activeUsers={activeUsers}
-        />
+    <div className="bg-chat-background bg-cover  h-screen overflow-y-scroll ">
+      <div className="overlay h-screen">
+        {/* Available Users Section */}
+        <div className="">
+          <AvailableUsers
+            friendsArray={friendsArray}
+            users={users}
+            handleUserSelect={handleUserSelect}
+            unreadMessages={unreadMessages}
+            activeUsers={activeUsers}
+          />
+        </div>
       </div>
-
       {/* Conversation Area Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[200]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 flex justify-center items-center z-[200]"
+        >
           <div className="bg-white rounded-md shadow-lg w-[90%] md:w-[70%] lg:w-[50%]">
             <div className="flex justify-end items-center rounded-t-lg pt-2 pe-2 ">
               <button
@@ -234,7 +231,7 @@ const ChatDashboard = () => {
               activeUsers={activeUsers}
             />
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

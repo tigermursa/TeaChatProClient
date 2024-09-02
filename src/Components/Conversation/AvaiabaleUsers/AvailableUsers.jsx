@@ -1,19 +1,35 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-
 import { BsChatLeftText } from "react-icons/bs";
 import { Img } from "react-image";
+import { useGetUserByIDArrayQuery } from "../../../redux/features/friend/friendApi";
+import Loader from "../../SmallComponents/Loader/Loader";
 
 const AvailableUsers = ({
   users,
   handleUserSelect,
   unreadMessages,
   activeUsers,
+  friendsArray,
 }) => {
+  // Always call the hook
+  const { data, error, isLoading } = useGetUserByIDArrayQuery(friendsArray, {
+    skip: friendsArray?.length === 0,
+  });
+
+  // Extract emails of friends from the data, if available
+  const friendEmails = data?.data?.map((friend) => friend.email) || [];
+
+  // Filter users to only show those that are in the friendEmails array
+  const filteredUsers = users?.filter((userWrapper) =>
+    friendEmails.includes(userWrapper.user?.email)
+  );
+
   return (
-    <div className="flex justify-center border border-red-600 ">
-      <div className="grid md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  gap-8">
-        {users?.length > 0 ? (
-          users.map((userWrapper, index) => {
+    <div className="">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+        {filteredUsers?.length > 0 ? (
+          filteredUsers.map((userWrapper, index) => {
             const { user } = userWrapper;
             const hasUnreadMessages = !!unreadMessages?.[user.receiverId];
 
@@ -21,10 +37,10 @@ const AvailableUsers = ({
             const isUserOnline = activeUsers.some(
               (activeUser) => activeUser.userId === user.receiverId
             );
-    
+
             return (
-              <div key={index} className="flex flex-wrap justify-center">
-                <div className="w-full h-auto rounded-xl bg-center p-4 border shadow-md hover:shadow-xl cursor-pointer relative">
+              <div key={index} className=" px-5 py-5">
+                <div className=" h-auto rounded-xl bg-center p-4 border hover:border-primary  w-[180px] shadow-2xl shadow-primary hover:shadow-xl cursor-pointer relative ">
                   {hasUnreadMessages && (
                     <div className="absolute -top-5 -right-2 text-nowrap text-xs text-white p-2 rounded-full bg-red-500 blink">
                       New
@@ -47,7 +63,7 @@ const AvailableUsers = ({
                       )}
                     </div>
 
-                    <h2 className="mt-4 text-[18px] text-[#202224] font-bold">
+                    <h2 className="mt-4 text-[18px] text-white font-bold">
                       {user?.username}
                     </h2>
                     <div className="mt-[25px]">
@@ -56,7 +72,7 @@ const AvailableUsers = ({
                         onClick={() => handleUserSelect(user)}
                       >
                         <span className="">
-                          <BsChatLeftText className="text-[12px]" />
+                          <BsChatLeftText className="text-[12px] me-2" />
                         </span>
                         MESSAGE
                       </button>
@@ -68,7 +84,15 @@ const AvailableUsers = ({
           })
         ) : (
           <div className="">
-            <p className="text-primaryDark h-screen flex justify-center items-center">Loading...</p>
+            <div className="text-primaryDark h-screen flex justify-center items-center">
+              {friendsArray?.length === 0 ? (
+                <Loader />
+              ) : isLoading ? (
+                <Loader />
+              ) : (
+                "No matching friends found."
+              )}
+            </div>
           </div>
         )}
       </div>

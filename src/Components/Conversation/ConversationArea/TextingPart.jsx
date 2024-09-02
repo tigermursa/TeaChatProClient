@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { format } from "date-fns";
+import Loader from "../../SmallComponents/Loader/Loader";
 
 const TextingPart = ({ messages, user, messageRef }) => {
   // Check if there are no messages and a user is selected
@@ -44,10 +45,8 @@ const TextingPart = ({ messages, user, messageRef }) => {
           }
         )
       ) : (
-        <div className="text-center text-lg font-bold mt-24 text-black">
-          <p className="text-primaryDark h-[200px] flex justify-center items-center">
-            Loading...
-          </p>
+        <div className=" flex justify-center items-center h-[400px] w-auto">
+          <Loader />
         </div>
       )}
     </div>
