@@ -24,7 +24,7 @@ const Thought = () => {
   }, [allThoughts.length]);
 
   return (
-    <div className="flex justify-center items-center mt-[15%]">
+    <div className="flex justify-center items-center">
       <div className="relative w-[50%] mx-auto">
         {allThoughts.map((thought, index) => (
           <div

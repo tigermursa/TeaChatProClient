@@ -6,15 +6,34 @@ import PrivateRoute from "../Providers/PrivateRoute";
 import ProfilePage from "../pages/Home/ProfilePage/ProfilePage";
 import ChatDashboard from "../Components/Conversation/ChatDashboard/ChatDashboard";
 import PeopleYouMayKnow from "../Components/PagesComponents/PeopleYouMayKnow/PeopleYouMayKnow";
+import MainLayout from "../Components/Layouts/MainLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PrivateRoute>
-        <WelcomePage />
+        <MainLayout />
       </PrivateRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <WelcomePage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "chat",
+        element: <ChatDashboard />,
+      },
+      {
+        path: "test",
+        element: <PeopleYouMayKnow />,
+      },
+    ],
   },
   {
     path: "/login",
@@ -22,33 +41,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/sign-up",
-    element: (
-      <PrivateRoute>
-        {" "}
-        <SignUpPage />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/profile",
-    element: (
-      <PrivateRoute>
-        {" "}
-        <ProfilePage />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "chat",
-    element: (
-      <PrivateRoute>
-        <ChatDashboard />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "test",
-    element: <PeopleYouMayKnow />,
+    element: <SignUpPage />,
   },
 ]);
 
