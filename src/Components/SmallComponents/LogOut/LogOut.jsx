@@ -19,6 +19,7 @@ const LogoutButton = () => {
     try {
       await logout({}).unwrap();
       localStorage.removeItem("user");
+      localStorage.removeItem("unreadMessages");
       navigate("/login");
       toast.success("Logged out successfully!");
     } catch {

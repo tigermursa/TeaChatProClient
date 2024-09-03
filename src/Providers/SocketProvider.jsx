@@ -16,23 +16,30 @@ export const SocketProvider = ({ children }) => {
   const BASE_URL = "http://localhost:5000";
 
   useEffect(() => {
+    // Load unread messages from local storage
+    const storedUnreadMessages = JSON.parse(localStorage.getItem('unreadMessages')) || {};
+    setUnreadMessages(storedUnreadMessages);
+
     if (currentUser?.data?._id) {
       const socketInstance = io(BASE_URL);
       setSocket(socketInstance);
 
       socketInstance.emit("addUser", currentUser.data._id);
 
-      // Handle receiving the updated active users list
       socketInstance.on("getUsers", (users) => {
         setActiveUsers(users);
       });
 
-      // Handle receiving a new message
       socketInstance.on("getMessage", (data) => {
-        setUnreadMessages((prev) => ({
-          ...prev,
-          [data.user.id]: true,
-        }));
+        setUnreadMessages((prev) => {
+          const updatedUnreadMessages = {
+            ...prev,
+            [data.user.id]: true,
+          };
+          // Save to local storage
+          localStorage.setItem('unreadMessages', JSON.stringify(updatedUnreadMessages));
+          return updatedUnreadMessages;
+        });
       });
 
       return () => {
@@ -42,15 +49,25 @@ export const SocketProvider = ({ children }) => {
   }, [BASE_URL, currentUser]);
 
   const markMessageAsRead = (userId) => {
-    setUnreadMessages((prev) => ({
-      ...prev,
-      [userId]: false,
-    }));
+    setUnreadMessages((prev) => {
+      const updatedUnreadMessages = {
+        ...prev,
+        [userId]: false,
+      };
+      // Save to local storage
+      localStorage.setItem('unreadMessages', JSON.stringify(updatedUnreadMessages));
+      return updatedUnreadMessages;
+    });
   };
 
+  const getUnreadCount = () => {
+    if (!currentUser?.data?._id) return 0;
+    // Count unread messages only for the current user
+    return Object.keys(unreadMessages).filter(userId => unreadMessages[userId] && userId !== currentUser.data._id).length;
+  };
   return (
     <SocketContext.Provider
-      value={{ socket, activeUsers, unreadMessages, markMessageAsRead }}
+      value={{ socket, activeUsers, unreadMessages, markMessageAsRead , getUnreadCount }}
     >
       {children}
     </SocketContext.Provider>
