@@ -1,9 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import useAuth from "../hooks/useAuth";
-
+import mp3 from "../assets/Sounds/notification-two.mp3"
 const SocketContext = createContext(null);
 
 export const useSocket = () => useContext(SocketContext);
@@ -31,6 +32,12 @@ export const SocketProvider = ({ children }) => {
       });
 
       socketInstance.on("getMessage", (data) => {
+        // Play the notification sound
+        const audio = new Audio(mp3);
+        audio.play().catch(error => {
+          console.error("Failed to play notification sound:", error);
+        });
+
         setUnreadMessages((prev) => {
           const updatedUnreadMessages = {
             ...prev,
@@ -65,9 +72,10 @@ export const SocketProvider = ({ children }) => {
     // Count unread messages only for the current user
     return Object.keys(unreadMessages).filter(userId => unreadMessages[userId] && userId !== currentUser.data._id).length;
   };
+
   return (
     <SocketContext.Provider
-      value={{ socket, activeUsers, unreadMessages, markMessageAsRead , getUnreadCount }}
+      value={{ socket, activeUsers, unreadMessages, markMessageAsRead, getUnreadCount }}
     >
       {children}
     </SocketContext.Provider>
