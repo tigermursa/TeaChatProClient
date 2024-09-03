@@ -34,7 +34,7 @@ const MyFriends = ({ currentUser }) => {
   return (
     <div className="relative">
       <FaUserFriends
-        className="text-2xl text-white cursor-pointer"
+        className="text-3xl text-white cursor-pointer"
         onClick={handleOpen}
       />
       <AnimatePresence>

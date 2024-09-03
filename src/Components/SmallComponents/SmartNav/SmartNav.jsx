@@ -12,7 +12,6 @@ const SmartNav = ({ currentUser, refetch }) => {
   const { getUnreadCount } = useSocket();
   const unreadCount = getUnreadCount();
 
-  console.log(getUnreadCount)
   return (
     <div className="flex items-center justify-center gap-6">
       <Link to={"/"}>
@@ -24,9 +23,11 @@ const SmartNav = ({ currentUser, refetch }) => {
       <MyFriends currentUser={currentUser} />
       <Link to={"/chat"}>
         <div className="relative">
-          <HiChatBubbleLeftRight className="text-2xl text-white cursor-pointer" />
+          <HiChatBubbleLeftRight className="text-3xl text-white cursor-pointer" />
           {unreadCount > 0 && (
-            <div className="absolute -top-2 -right-2 w-3 h-3 bg-red-500 rounded-full border border-white"></div>
+            <div className="absolute -top-2 -right-4 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              {unreadCount}
+            </div>
           )}
         </div>
       </Link>
