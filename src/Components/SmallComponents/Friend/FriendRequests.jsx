@@ -104,7 +104,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       {isDropdownOpen && (
         <div
           ref={dropdownRef}
-          className="absolute top-12 w-80 bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 ease-in-out opacity-100"
+          className="absolute top-11 w-80 bg-gray-800 z-10 text-white shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 ease-in-out opacity-100"
         >
           {friendRequestUsers.length ? (
             friendRequestUsers.map((user) => (
