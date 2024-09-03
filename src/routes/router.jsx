@@ -7,13 +7,16 @@ import ProfilePage from "../pages/Home/ProfilePage/ProfilePage";
 import ChatDashboard from "../Components/Conversation/ChatDashboard/ChatDashboard";
 import PeopleYouMayKnow from "../Components/PagesComponents/PeopleYouMayKnow/PeopleYouMayKnow";
 import MainLayout from "../Components/Layouts/MainLayout";
+import { SocketProvider } from "../Providers/SocketProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PrivateRoute>
-        <MainLayout />
+        <SocketProvider>
+          <MainLayout />
+        </SocketProvider>
       </PrivateRoute>
     ),
     children: [
