@@ -62,7 +62,7 @@ const ProfilePage = () => {
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col items-center">
       {/* Cover Image */}
-      <div className="w-full h-56 bg-gradient-to-r from-purple-500 to-indigo-600 relative">
+      <div className="w-full h-[20rem] bg-profile-background bg-no-repeat bg-cover relative">
         {/* Profile Image */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
           <img
