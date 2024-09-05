@@ -13,13 +13,23 @@ import Loader from "../../../Components/SmallComponents/Loader/Loader";
 import useAuth from "../../../hooks/useAuth";
 import HomeButton from "../../../Components/SmallComponents/HomeButton/HomeButton";
 import UpdateProfile from "./UpdateProfile";
-import MyFriends from "../../../Components/SmallComponents/MyFriends/MyFriends";
+import { useGetUserByIDArrayQuery } from "../../../redux/features/user/userApi";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const { currentUser, isLoading, isError, refetch } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const userData = currentUser?.data;
+  const myFriendsIdArray = userData?.friends;
 
+  const { data } = useGetUserByIDArrayQuery(myFriendsIdArray, {
+    skip: !myFriendsIdArray,
+  });
+
+  const friendsArray = data?.data;
+
+  console.log(data?.data);
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
@@ -55,8 +65,6 @@ const ProfilePage = () => {
       </div>
     );
   }
-
-  const userData = currentUser.data;
 
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col items-center">
@@ -129,12 +137,24 @@ const ProfilePage = () => {
       </div>
 
       <div className="mt-10">
-        <MyFriends currentUser={currentUser}/>
+        {friendsArray?.map((friend) => (
+          <div key={friend?._id}>
+            <Link to={`/profile/${friend?._id}`}>
+              <div className="w-[180px] border border-primary p-3 rounded-md">
+                <img src={friend?.userImage} />
+                <div className="text-white text-center mt-3">
+                  <p>{friend?.username}</p>
+                  <p>{friend?.work}</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
 
       {/* Home Button */}
       <div className="mt-6">
-        <HomeButton  />
+        <HomeButton />
       </div>
 
       {/* Update Profile Modal */}
