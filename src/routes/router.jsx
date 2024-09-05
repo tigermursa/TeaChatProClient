@@ -8,6 +8,7 @@ import ChatDashboard from "../Components/Conversation/ChatDashboard/ChatDashboar
 import PeopleYouMayKnow from "../Components/PagesComponents/PeopleYouMayKnow/PeopleYouMayKnow";
 import MainLayout from "../Components/Layouts/MainLayout";
 import { SocketProvider } from "../Providers/SocketProvider";
+import DynamicProfilePage from "../pages/Home/ProfilePage/DynamicProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "profile/:id",
+        element: <DynamicProfilePage />,
       },
       {
         path: "chat",

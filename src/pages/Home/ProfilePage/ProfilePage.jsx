@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
   const friendsArray = data?.data;
 
-  console.log(data?.data);
+  //console.log(data?.data);
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
