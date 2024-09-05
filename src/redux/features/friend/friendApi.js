@@ -51,7 +51,7 @@ const friendApi = baseApi.injectEndpoints({
     // Unfriend user
     unfriendUser: builder.mutation({
       query: (data) => ({
-        url: `/api/friend-request/unfriend`,
+        url: `/api/friend/unfriend`,
         method: "POST",
         body: data,
       }),

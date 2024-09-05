@@ -21,7 +21,7 @@ const ProfilePage = () => {
   const [showModal, setShowModal] = useState(false);
   const userData = currentUser?.data;
   const myFriendsIdArray = userData?.friends;
-
+  const userId = userData?._id;
   //console.log(data?.data);
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
@@ -129,7 +129,7 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <MyFriends myFriendsIdArray={myFriendsIdArray} />
+      <MyFriends myFriendsIdArray={myFriendsIdArray} userId={userId} />
 
       {/* Home Button */}
       <div className="mt-6">
