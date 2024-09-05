@@ -4,7 +4,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import useAuth from "../hooks/useAuth";
-import mp3 from "../assets/Sounds/notification-two.mp3"
+import mp3 from "../assets/Sounds/notification-two.mp3";
+import { toast } from "react-toastify";
 const SocketContext = createContext(null);
 
 export const useSocket = () => useContext(SocketContext);
@@ -18,7 +19,8 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Load unread messages from local storage
-    const storedUnreadMessages = JSON.parse(localStorage.getItem('unreadMessages')) || {};
+    const storedUnreadMessages =
+      JSON.parse(localStorage.getItem("unreadMessages")) || {};
     setUnreadMessages(storedUnreadMessages);
 
     if (currentUser?.data?._id) {
@@ -34,7 +36,8 @@ export const SocketProvider = ({ children }) => {
       socketInstance.on("getMessage", (data) => {
         // Play the notification sound
         const audio = new Audio(mp3);
-        audio.play().catch(error => {
+        toast.success("You got new Message");
+        audio.play().catch((error) => {
           console.error("Failed to play notification sound:", error);
         });
 
@@ -44,7 +47,10 @@ export const SocketProvider = ({ children }) => {
             [data.user.id]: true,
           };
           // Save to local storage
-          localStorage.setItem('unreadMessages', JSON.stringify(updatedUnreadMessages));
+          localStorage.setItem(
+            "unreadMessages",
+            JSON.stringify(updatedUnreadMessages)
+          );
           return updatedUnreadMessages;
         });
       });
@@ -62,7 +68,10 @@ export const SocketProvider = ({ children }) => {
         [userId]: false,
       };
       // Save to local storage
-      localStorage.setItem('unreadMessages', JSON.stringify(updatedUnreadMessages));
+      localStorage.setItem(
+        "unreadMessages",
+        JSON.stringify(updatedUnreadMessages)
+      );
       return updatedUnreadMessages;
     });
   };
@@ -70,12 +79,20 @@ export const SocketProvider = ({ children }) => {
   const getUnreadCount = () => {
     if (!currentUser?.data?._id) return 0;
     // Count unread messages only for the current user
-    return Object.keys(unreadMessages).filter(userId => unreadMessages[userId] && userId !== currentUser.data._id).length;
+    return Object.keys(unreadMessages).filter(
+      (userId) => unreadMessages[userId] && userId !== currentUser.data._id
+    ).length;
   };
 
   return (
     <SocketContext.Provider
-      value={{ socket, activeUsers, unreadMessages, markMessageAsRead, getUnreadCount }}
+      value={{
+        socket,
+        activeUsers,
+        unreadMessages,
+        markMessageAsRead,
+        getUnreadCount,
+      }}
     >
       {children}
     </SocketContext.Provider>
