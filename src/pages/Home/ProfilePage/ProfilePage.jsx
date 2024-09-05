@@ -108,7 +108,7 @@ const ProfilePage = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 text-center border ">
+        <div className="grid grid-cols-1 gap-4 text-center ">
           <div className="text-lg">
             <p className="font-semibold mb-2 flex items-center justify-center">
               <FaBirthdayCake className="mr-2 text-gray-400" />
