@@ -13,7 +13,6 @@ import Loader from "../../../Components/SmallComponents/Loader/Loader";
 import useAuth from "../../../hooks/useAuth";
 import HomeButton from "../../../Components/SmallComponents/HomeButton/HomeButton";
 import UpdateProfile from "./UpdateProfile";
-import { useGetUserByIDArrayQuery } from "../../../redux/features/user/userApi";
 import MyFriends from "../../../Components/SmallComponents/MyFriends/MyFriends";
 
 const ProfilePage = () => {
@@ -22,12 +21,6 @@ const ProfilePage = () => {
   const [showModal, setShowModal] = useState(false);
   const userData = currentUser?.data;
   const myFriendsIdArray = userData?.friends;
-
-  const { data } = useGetUserByIDArrayQuery(myFriendsIdArray, {
-    skip: !myFriendsIdArray,
-  });
-
-  const friendsArray = data?.data;
 
   //console.log(data?.data);
   const handleDropdownToggle = () => {
@@ -136,7 +129,7 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <MyFriends friendsArray={friendsArray} />
+      <MyFriends myFriendsIdArray={myFriendsIdArray} />
 
       {/* Home Button */}
       <div className="mt-6">

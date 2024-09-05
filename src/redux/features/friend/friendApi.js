@@ -35,7 +35,7 @@ const friendApi = baseApi.injectEndpoints({
       query: (userIds) => ({
         url: `/api/v2/user/array`,
         method: "POST",
-        body: { userIds }, 
+        body: { userIds },
       }),
       providesTags: ["ChatApp"],
     }),
@@ -48,6 +48,15 @@ const friendApi = baseApi.injectEndpoints({
       }),
       providesTags: ["ChatApp"], // Provide the tag for cache
     }),
+    // Unfriend user
+    unfriendUser: builder.mutation({
+      query: (data) => ({
+        url: `/api/friend-request/unfriend`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["ChatApp"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -59,6 +68,7 @@ export const {
   useAcceptFriendRequestMutation,
   useRejectFriendRequestMutation,
   useGetUserByIDArrayQuery,
+  useUnfriendUserMutation,
 } = friendApi;
 
 export default friendApi;

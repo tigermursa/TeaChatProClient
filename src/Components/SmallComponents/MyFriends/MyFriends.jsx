@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import { useGetUserByIDArrayQuery } from "../../../redux/features/friend/friendApi";
 
-const MyFriends = ({ friendsArray }) => {
+const MyFriends = ({ myFriendsIdArray }) => {
+  const { data } = useGetUserByIDArrayQuery(myFriendsIdArray, {
+    skip: !myFriendsIdArray,
+  });
+
+  const friendsArray = data?.data;
+
   return (
     <div className="mt-10">
       {friendsArray?.map((friend) => (
