@@ -6,12 +6,18 @@ import {
 } from "../../../redux/features/friend/friendApi";
 import { toast } from "react-toastify";
 import { useSocket } from "../../../Providers/SocketProvider";
+import Loader from "../../SmallComponents/Loader/Loader";
 
 const PeopleYouMayKnow = () => {
   const { currentUser, refetch } = useAuth();
   const { socket } = useSocket(); // Access the socket instance
   const id = currentUser?.data._id; // senderId
-  const { data, refetch: fetchAgain } = useGetNotMyFriendQuery(id);
+  const {
+    isFetching,
+    isLoading,
+    data,
+    refetch: fetchAgain,
+  } = useGetNotMyFriendQuery(id);
   const [sentRequest] = useSentFriendRequestMutation();
 
   const handleSendFriendRequest = async (receiverId) => {
@@ -35,8 +41,16 @@ const PeopleYouMayKnow = () => {
 
   const sentFriendRequestsArray = currentUser?.data?.sentFriendRequests || [];
 
+  if (isFetching || isLoading) {
+    return (
+      <div className="h-full">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div className="p-6 flex justify-center items-center flex-col pt-44">
+    <div className="p-6 flex   justify-center items-center flex-col pt-44">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data?.data?.map((user) => (
           <div

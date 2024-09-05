@@ -80,10 +80,10 @@ const AvailableUsers = ({
             );
           })
         ) : (
-          <div className="">
-            <div className="text-primaryDark h-screen flex justify-center items-center">
+          <div className="h-screen flex justify-center items-center mx-auto">
+            <div className="text-primaryDark text-center flex justify-center items-center  w-screen">
               {friendsArray?.length === 0 ? (
-                <Loader />
+                <p className="text-white text-lg font-semibold">No Friend to chat 😔</p>
               ) : isLoading ? (
                 <Loader />
               ) : (
