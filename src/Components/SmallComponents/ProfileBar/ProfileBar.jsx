@@ -34,8 +34,10 @@ const ProfileBar = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <Loader />
+      <div className=" bg-welcome-background h-screen w-full">
+        <div className="overlay h-screen w-full flex justify-center items-center ">
+          <Loader />
+        </div>
       </div>
     );
   }
@@ -48,7 +50,7 @@ const ProfileBar = () => {
     );
   }
 
-  const user = currentUser.data;
+  const user = currentUser?.data;
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -67,7 +69,7 @@ const ProfileBar = () => {
 
   return (
     <>
-      <div className="relative flex justify-between gap-6 items-center me-10">
+      <div className="relative flex justify-between gap-6 items-center me-10 ">
         <div className="flex items-center gap-2  px-2 py-2">
           <Img
             src={user?.userImage}
