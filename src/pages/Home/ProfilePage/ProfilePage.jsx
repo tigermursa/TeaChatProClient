@@ -14,7 +14,7 @@ import useAuth from "../../../hooks/useAuth";
 import HomeButton from "../../../Components/SmallComponents/HomeButton/HomeButton";
 import UpdateProfile from "./UpdateProfile";
 import { useGetUserByIDArrayQuery } from "../../../redux/features/user/userApi";
-import { Link } from "react-router-dom";
+import MyFriends from "../../../Components/SmallComponents/MyFriends/MyFriends";
 
 const ProfilePage = () => {
   const { currentUser, isLoading, isError, refetch } = useAuth();
@@ -136,21 +136,7 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="mt-10">
-        {friendsArray?.map((friend) => (
-          <div key={friend?._id}>
-            <Link to={`/profile/${friend?._id}`}>
-              <div className="w-[180px] border border-primary p-3 rounded-md">
-                <img src={friend?.userImage} />
-                <div className="text-white text-center mt-3">
-                  <p>{friend?.username}</p>
-                  <p>{friend?.work}</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+      <MyFriends friendsArray={friendsArray} />
 
       {/* Home Button */}
       <div className="mt-6">

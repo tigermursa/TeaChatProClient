@@ -3,7 +3,6 @@ import { FaGlobeAsia } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import FriendRequests from "../Friend/FriendRequests";
 import FindFriends from "../../PagesComponents/FindFriends/FindFriends";
-import MyFriends from "../MyFriends/MyFriends";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { IoHome } from "react-icons/io5";
 import { useSocket } from "../../../Providers/SocketProvider";
@@ -20,7 +19,6 @@ const SmartNav = ({ currentUser, refetch }) => {
       <FriendRequests currentUser={currentUser} refetchUser={refetch} />
       <FaGlobeAsia className="text-2xl text-white cursor-pointer" />
       <FindFriends currentUser={currentUser} refetchUser={refetch} />
-      <MyFriends currentUser={currentUser} />
       <Link to={"/chat"}>
         <div className="relative">
           <HiChatBubbleLeftRight className="text-3xl text-white cursor-pointer" />

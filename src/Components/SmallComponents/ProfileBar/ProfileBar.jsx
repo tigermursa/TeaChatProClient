@@ -93,7 +93,7 @@ const ProfileBar = () => {
             />
             {/* Dropdown Menu */}
             {isMenuOpen && (
-              <div className="absolute top-full right-4 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48">
+              <div className="absolute top-full right-4 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48 z-20">
                 <Link to={"/profile"}>
                   <button className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3">
                     <FaUser className="mr-2" />
