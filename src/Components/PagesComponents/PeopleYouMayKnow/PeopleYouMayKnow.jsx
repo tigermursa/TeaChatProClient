@@ -4,10 +4,12 @@ import {
   useGetNotMyFriendQuery,
   useSentFriendRequestMutation,
 } from "../../../redux/features/friend/friendApi";
-import { toast } from "react-toastify"; // Import Toastify
+import { toast } from "react-toastify";
+import { useSocket } from "../../../Providers/SocketProvider";
 
 const PeopleYouMayKnow = () => {
   const { currentUser, refetch } = useAuth();
+  const { socket } = useSocket(); // Access the socket instance
   const id = currentUser?.data._id; // senderId
   const { data, refetch: fetchAgain } = useGetNotMyFriendQuery(id);
   const [sentRequest] = useSentFriendRequestMutation();
@@ -18,12 +20,19 @@ const PeopleYouMayKnow = () => {
       refetch();
       fetchAgain();
       toast.success("Friend request sent successfully");
+
+      // Emit the friend request event via Socket.IO
+      if (socket) {
+        socket.emit("sendFriendRequest", {
+          senderId: id,
+          receiverId,
+        });
+      }
     } catch (error) {
       toast.error(error?.data?.message);
     }
   };
 
-  // the id that I sent request
   const sentFriendRequestsArray = currentUser?.data?.sentFriendRequests || [];
 
   return (

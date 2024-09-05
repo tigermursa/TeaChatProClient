@@ -8,7 +8,9 @@ import {
   useRejectFriendRequestMutation,
 } from "../../../redux/features/friend/friendApi";
 import { BiLoaderCircle } from "react-icons/bi";
+import { useSocket } from "../../../Providers/SocketProvider";
 const FriendRequests = ({ currentUser, refetchUser }) => {
+  const { friendRequestCount, setFriendRequestCount } = useSocket();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [friendRequestUsers, setFriendRequestUsers] = useState([]);
   const dropdownRef = useRef(null);
@@ -24,6 +26,11 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       skip: !shouldFetch,
     }
   );
+  useEffect(() => {
+    if (friendRequestCount > 0) {
+      refetchUser(); // Optionally refetch user to get updated friend request data
+    }
+  }, [friendRequestCount, refetchUser]);
 
   const [acceptFriendRequest] = useAcceptFriendRequestMutation();
   const [rejectFriendRequest] = useRejectFriendRequestMutation();
@@ -45,6 +52,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         prevUsers.filter((user) => user._id !== senderId)
       );
       refetchUser();
+      setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
     } catch (error) {
       console.error("Error accepting friend request:", error);
     }
@@ -57,6 +65,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         prevUsers.filter((user) => user._id !== senderId)
       );
       refetchUser();
+      setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
     } catch (error) {
       console.error("Error rejecting friend request:", error);
     }
@@ -86,6 +95,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
   if (error) {
     console.error("Error fetching friend request users:", error);
   }
+  // eslint-disable-next-line no-unused-vars
   const totalFriendRequest = friendRequestIds.length;
 
   // console.log(totalFriendRequest);
@@ -95,12 +105,12 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         className="text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
-      {totalFriendRequest > 0 && (
+     {friendRequestCount > 0 && (
         <div className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs">
-          {totalFriendRequest}
+          {friendRequestCount}
         </div>
       )}
- 
+
       {isDropdownOpen && (
         <div
           ref={dropdownRef}

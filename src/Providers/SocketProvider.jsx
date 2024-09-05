@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import useAuth from "../hooks/useAuth";
 import mp3 from "../assets/Sounds/notification-two.mp3";
+
 import { toast } from "react-toastify";
 const SocketContext = createContext(null);
 
@@ -15,6 +16,7 @@ export const SocketProvider = ({ children }) => {
   const [activeUsers, setActiveUsers] = useState([]);
   const [unreadMessages, setUnreadMessages] = useState({});
   const { currentUser } = useAuth();
+  const [friendRequestCount, setFriendRequestCount] = useState(0);
   const BASE_URL = "http://localhost:5000";
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const SocketProvider = ({ children }) => {
       socketInstance.on("getMessage", (data) => {
         // Play the notification sound
         const audio = new Audio(mp3);
-        toast.success("You got new Message");
+        toast.success("You got a new message");
         audio.play().catch((error) => {
           console.error("Failed to play notification sound:", error);
         });
@@ -53,6 +55,16 @@ export const SocketProvider = ({ children }) => {
           );
           return updatedUnreadMessages;
         });
+      });
+
+      // Handle friend request notifications
+      socketInstance.on("friendRequest", ({ senderUsername }) => {
+        // Play the notification sound
+
+        toast.info(`New friend request from ${senderUsername}`);
+
+        // Update friend request count in real-time
+        setFriendRequestCount((prevCount) => prevCount + 1);
       });
 
       return () => {
@@ -92,6 +104,8 @@ export const SocketProvider = ({ children }) => {
         unreadMessages,
         markMessageAsRead,
         getUnreadCount,
+        friendRequestCount,
+        setFriendRequestCount,
       }}
     >
       {children}
