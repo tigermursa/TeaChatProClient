@@ -44,7 +44,7 @@ const LoginForm = () => {
           {...register("email", { required: "Email is required" })}
           type="text"
           placeholder="Email address or phone number"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
@@ -54,7 +54,7 @@ const LoginForm = () => {
           {...register("password", { required: "Password is required" })}
           type="password"
           placeholder="Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
