@@ -34,7 +34,7 @@ const FindFriends = () => {
             }}
           >
             <motion.div
-              className="bg-gray-900  bg-opacity-95 text-white p-6 rounded-lg shadow-lg relative  h-[600px] overflow-x-scroll"
+              className="bg-gray-900  bg-opacity-95 text-white p-6 rounded-lg shadow-lg relative   h-[600px] overflow-x-scroll"
               initial={{ y: "-100vh" }}
               animate={{ y: 0 }}
               exit={{ y: "100vh" }}
@@ -48,9 +48,9 @@ const FindFriends = () => {
                 className="absolute top-4 right-4 text-white"
                 onClick={handleClose}
               >
-                <FaTimes size={20} />
+                <FaTimes className="hover:animate-spin" size={20} />
               </button>
-              <h2 className="text-2xl mb-4">People You May Know</h2>
+              <h2 className="md:text-lg lg:text-2xl mb-4">People You May Know</h2>
               <PeopleYouMayKnow />
             </motion.div>
           </motion.div>

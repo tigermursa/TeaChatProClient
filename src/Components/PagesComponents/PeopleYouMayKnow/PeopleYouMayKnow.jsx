@@ -50,7 +50,7 @@ const PeopleYouMayKnow = () => {
   }
 
   return (
-    <div className="p-0 flex   justify-center items-center flex-col">
+    <div className="p-0 flex   justify-center items-center flex-col ">
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8">
         {data?.data?.map((user) => (
           <div

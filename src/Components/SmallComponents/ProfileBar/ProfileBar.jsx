@@ -76,10 +76,12 @@ const ProfileBar = () => {
             className="w-[60px] h-[60px] object-cover rounded-full border-[2px] border-purple-100"
             alt="user profile"
           />
-          <div className="text-gray-200 font-semibold flex items-center gap-5">
-            <div>
-              <p className="text-lg md:text-[18px]">{user?.username}</p>
-              <p className="text-sm md:text-[14px]">{user?.work}</p>
+          <div className="hidden sm:block">
+            <div className="text-gray-200 font-semibold flex items-center gap-5">
+              <div>
+                <p className="text-lg md:text-[18px]">{user?.username}</p>
+                <p className="text-sm md:text-[14px]">{user?.work}</p>
+              </div>
             </div>
           </div>
         </div>
