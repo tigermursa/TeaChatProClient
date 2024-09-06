@@ -43,41 +43,49 @@ const PeopleYouMayKnow = () => {
 
   if (isFetching || isLoading) {
     return (
-      <div className="h-full">
-        <FindFriendSkeleton/>
+      <div className="h-full flex justify-center">
+        <FindFriendSkeleton />
       </div>
     );
   }
 
   return (
-    <div className="p-0 flex   justify-center items-center flex-col ">
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
-        {data?.data?.map((user) => (
-          <div
-            key={user?._id}
-            className=" border border-primary rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 w-[180px]"
-          >
-            <Img
-              src={user?.userImage}
-              alt={user?.username}
-              className="w-full h-32 object-cover rounded-t-lg"
-            />
-            <div className="p-4 flex flex-col items-center">
-              <p className="text-sm font-semibold text-gray-200 mb-2">
-                {user?.username}
-              </p>
-              <button
-                onClick={() => handleSendFriendRequest(user?._id)}
-                className="px-4 py-2 text-sm bg-primary text-white font-semibold rounded-full hover:bg-primaryDark transition duration-200"
-                disabled={sentFriendRequestsArray.includes(user?._id)}
-              >
-                {sentFriendRequestsArray.includes(user?._id)
-                  ? "Request Sent"
-                  : "Add Friend"}
-              </button>
+    <div className="bg-people-background h-screen">
+      <div className="overlay h-screen">
+        <div className="flex flex-wrap gap-8 justify-center pt-5">
+          {data?.data?.map((user) => (
+            <div
+              key={user?._id}
+              className="border border-primary rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 w-[240px] hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="relative w-full h-40 bg-gradient-to-r from-primary to-primaryDark">
+                <Img
+                  src={user?.userImage}
+                  alt={user?.username}
+                  className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 w-24 h-24 object-cover rounded-full border-4 border-white shadow-lg"
+                />
+              </div>
+              <div className="p-6 flex flex-col items-center">
+                <p className="text-lg font-semibold text-gray-900 mb-2">
+                  {user?.username}
+                </p>
+                <button
+                  onClick={() => handleSendFriendRequest(user?._id)}
+                  className={`px-6 py-2 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                    sentFriendRequestsArray.includes(user?._id)
+                      ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+                      : "bg-primary text-white hover:bg-primaryDark"
+                  }`}
+                  disabled={sentFriendRequestsArray.includes(user?._id)}
+                >
+                  {sentFriendRequestsArray.includes(user?._id)
+                    ? "Request Sent"
+                    : "Add Friend"}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

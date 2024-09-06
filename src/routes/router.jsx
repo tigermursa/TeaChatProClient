@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <ChatDashboard />,
       },
       {
-        path: "test",
+        path: "people",
         element: <PeopleYouMayKnow />,
       },
     ],

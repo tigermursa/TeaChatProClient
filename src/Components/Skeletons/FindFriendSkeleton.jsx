@@ -20,16 +20,18 @@ const skeletonData = [
 
 const FindFriendSkeleton = () => {
   return (
-    <div className="flex">
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
+    <div className="bg-people-background h-screen">
+    <div className="overlay h-screen pt-5">
+      <div className="flex justify-center flex-wrap gap-8">
         {skeletonData.map((data) => (
           <div
             key={data.id}
-            className="h-[220px] w-[180px] border border-primary rounded-md flex items-center justify-center"
+            className="h-[230px] w-[180px] border border-primary rounded-md flex items-center justify-center"
           >
             <Loader />
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

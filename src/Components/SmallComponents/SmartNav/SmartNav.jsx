@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { FaGlobeAsia } from "react-icons/fa";
+import { FaGlobeAsia, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import FriendRequests from "../Friend/FriendRequests";
-import FindFriends from "../../PagesComponents/FindFriends/FindFriends";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { IoHome } from "react-icons/io5";
 import { useSocket } from "../../../Providers/SocketProvider";
@@ -18,7 +17,9 @@ const SmartNav = ({ currentUser, refetch }) => {
       </Link>
       <FriendRequests currentUser={currentUser} refetchUser={refetch} />
       <FaGlobeAsia className="text-lg md:text-2xl text-white cursor-pointer" />
-      <FindFriends currentUser={currentUser} refetchUser={refetch} />
+      <Link to={"/people"}>
+        <FaSearch className="text-lg md:text-2xl text-white cursor-pointer"/>
+      </Link>
       <Link to={"/chat"}>
         <div className="relative">
           <HiChatBubbleLeftRight className="text-lg md:text-3xl text-white cursor-pointer" />
