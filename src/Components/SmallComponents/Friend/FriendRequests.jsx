@@ -53,6 +53,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       );
       refetchUser();
       setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
+      setIsDropdownOpen(false)
     } catch (error) {
       console.error("Error accepting friend request:", error);
     }
@@ -66,6 +67,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       );
       refetchUser();
       setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
+      setIsDropdownOpen(false)
     } catch (error) {
       console.error("Error rejecting friend request:", error);
     }
@@ -105,7 +107,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         className="text-lg md:text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
-     {friendRequestCount > 0 && (
+      {friendRequestCount > 0 && (
         <div className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs">
           {friendRequestCount}
         </div>

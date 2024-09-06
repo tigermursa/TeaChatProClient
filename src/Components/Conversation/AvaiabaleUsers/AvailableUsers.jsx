@@ -24,8 +24,8 @@ const AvailableUsers = ({
   );
 
   return (
-    <div className="flex">
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+    <div className="">
+      <div className="flex flex-wrap justify-center">
         {filteredUsers?.length > 0 ? (
           filteredUsers.map((userWrapper, index) => {
             const { user } = userWrapper;
@@ -57,10 +57,10 @@ const AvailableUsers = ({
                       )}
                     </div>
 
-                    <h2 className="mt-4 text-[18px] text-white font-bold">
+                    <h2 className="mt-4 text-sm text-white font-bold">
                       {user?.username}
                     </h2>
-                    <div className="mt-[25px]">
+                    <div className="mt-[25px] border">
                       <button
                         className="flex text-[10.8px] items-center justify-center ms-5 pt-[5px] pb-[5px] px-[4px] text-center w-[112px] border text-[#172B4D] hover:text-white hover:bg-[#172B4D] bg-white rounded"
                         onClick={() => {
@@ -68,9 +68,7 @@ const AvailableUsers = ({
                           markMessageAsRead(user.receiverId);
                         }}
                       >
-                        <span className="">
-                          <BsChatLeftText className="text-[12px] me-2" />
-                        </span>
+                        
                         MESSAGE
                       </button>
                     </div>
@@ -83,7 +81,9 @@ const AvailableUsers = ({
           <div className="h-screen flex justify-center items-center mx-auto">
             <div className="text-primaryDark text-center flex justify-center items-center  w-screen">
               {friendsArray?.length === 0 ? (
-                <p className="text-white text-lg font-semibold">No Friend to chat 😔</p>
+                <p className="text-white text-lg font-semibold">
+                  No Friend to chat 😔
+                </p>
               ) : isLoading ? (
                 <Loader />
               ) : (
