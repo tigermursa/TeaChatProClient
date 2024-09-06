@@ -69,11 +69,11 @@ const ProfileBar = () => {
 
   return (
     <>
-      <div className="relative flex justify-between gap-6 items-center me-10 ">
-        <div className="flex items-center gap-2  px-2 py-2">
+      <div className="relative flex justify-between sm:gap-0 gap-6 items-center me-2 sm:me-10 ">
+        <div className="flex items-center sm:gap-2  px-2 py-2">
           <Img
             src={user?.userImage}
-            className="w-[60px] h-[60px] object-cover rounded-full border-[2px] border-purple-100"
+            className="w-[30px] sm:w-[60px] h-[30px] sm:h-[60px] object-cover rounded-full border-[2px] border-purple-100"
             alt="user profile"
           />
           <div className="hidden sm:block">
@@ -85,15 +85,14 @@ const ProfileBar = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="">
           <SmartNav currentUser={currentUser} refetch={refetch} />
         </div>
         <div>
           <div className="relative">
             <FaCog
               onClick={handleMenuToggle}
-              className="text-gray-200 cursor-pointer hover:animate-spin"
-              size={24}
+              className="text-gray-200 text-lg md:text-2xl  cursor-pointer hover:animate-spin"
             />
             {/* Dropdown Menu */}
             {isMenuOpen && (

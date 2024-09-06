@@ -17,7 +17,7 @@ const FindFriends = () => {
   return (
     <div className="relative">
       <FaSearch
-        className="text-2xl text-white cursor-pointer relative"
+        className="text-lg md:text-2xl text-white cursor-pointer relative"
         onClick={handleOpen}
       />
       <AnimatePresence>

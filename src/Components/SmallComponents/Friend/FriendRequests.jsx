@@ -102,7 +102,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
   return (
     <div className="relative">
       <IoIosPersonAdd
-        className="text-3xl text-white cursor-pointer"
+        className="text-lg md:text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
      {friendRequestCount > 0 && (
