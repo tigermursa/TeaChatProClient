@@ -6,6 +6,7 @@ import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { IoHome } from "react-icons/io5";
 import { useSocket } from "../../../Providers/SocketProvider";
 
+// currentUser, refetchUser coming from Profile bar
 const SmartNav = ({ currentUser, refetch }) => {
   const { getUnreadCount } = useSocket();
   const unreadCount = getUnreadCount();

@@ -9,12 +9,16 @@ const useAuth = () => {
     data: currentUser,
     isLoading,
     isError,
-    refetch
-  } = useGetUserQuery(userId || "");
+    refetch,
+  } = useGetUserQuery(userId || "", {
+    refetchOnFocus: true,
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   const isLoggedIn = !!currentUser;
 
-  return { currentUser, isLoggedIn, isLoading, isError ,refetch };
+  return { currentUser, isLoggedIn, isLoading, isError, refetch };
 };
 
 export default useAuth;

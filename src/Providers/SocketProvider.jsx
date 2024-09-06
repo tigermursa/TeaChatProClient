@@ -20,10 +20,15 @@ export const SocketProvider = ({ children }) => {
   const BASE_URL = "http://localhost:5000";
 
   useEffect(() => {
-    // Load unread messages from local storage
+    // Load unread messages and friend request count from localStorage
     const storedUnreadMessages =
       JSON.parse(localStorage.getItem("unreadMessages")) || {};
     setUnreadMessages(storedUnreadMessages);
+
+    const storedFriendRequestCount = localStorage.getItem("friendRequestCount");
+    if (storedFriendRequestCount) {
+      setFriendRequestCount(parseInt(storedFriendRequestCount, 10));
+    }
 
     if (currentUser?.data?._id) {
       const socketInstance = io(BASE_URL);
@@ -38,7 +43,6 @@ export const SocketProvider = ({ children }) => {
       socketInstance.on("getMessage", (data) => {
         // Play the notification sound
         const audio = new Audio(mp3);
-        toast.success("You got a new message");
         audio.play().catch((error) => {
           console.error("Failed to play notification sound:", error);
         });
@@ -60,11 +64,14 @@ export const SocketProvider = ({ children }) => {
       // Handle friend request notifications
       socketInstance.on("friendRequest", ({ senderUsername }) => {
         // Play the notification sound
-
         toast.info(`New friend request from ${senderUsername}`);
 
-        // Update friend request count in real-time
-        setFriendRequestCount((prevCount) => prevCount + 1);
+        // Update friend request count in real-time and store it in localStorage
+        setFriendRequestCount((prevCount) => {
+          const newCount = prevCount + 1;
+          localStorage.setItem("friendRequestCount", newCount); // Store count
+          return newCount;
+        });
       });
 
       return () => {
@@ -72,6 +79,11 @@ export const SocketProvider = ({ children }) => {
       };
     }
   }, [BASE_URL, currentUser]);
+
+  useEffect(() => {
+    // Store friend request count in localStorage on change
+    localStorage.setItem("friendRequestCount", friendRequestCount);
+  }, [friendRequestCount]);
 
   const markMessageAsRead = (userId) => {
     setUnreadMessages((prev) => {

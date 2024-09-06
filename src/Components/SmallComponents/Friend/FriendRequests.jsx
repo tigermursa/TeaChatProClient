@@ -9,6 +9,8 @@ import {
 } from "../../../redux/features/friend/friendApi";
 import { BiLoaderCircle } from "react-icons/bi";
 import { useSocket } from "../../../Providers/SocketProvider";
+
+// currentUser, refetchUser coming from SmartNav
 const FriendRequests = ({ currentUser, refetchUser }) => {
   const { friendRequestCount, setFriendRequestCount } = useSocket();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,9 +28,10 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       skip: !shouldFetch,
     }
   );
+
   useEffect(() => {
     if (friendRequestCount > 0) {
-      refetchUser(); // Optionally refetch user to get updated friend request data
+      refetchUser(); // Fetch updated friend request data from server
     }
   }, [friendRequestCount, refetchUser]);
 
@@ -37,7 +40,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
 
   useEffect(() => {
     if (data && data.data) {
-      setFriendRequestUsers(data.data);
+      setFriendRequestUsers(data?.data);
     }
   }, [data]);
 
@@ -52,7 +55,11 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         prevUsers.filter((user) => user._id !== senderId)
       );
       refetchUser();
-      setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
+      setFriendRequestCount((prevCount) => {
+        const newCount = prevCount - 1;
+        localStorage.setItem("friendRequestCount", newCount); // Update localStorage
+        return newCount;
+      });
       setIsDropdownOpen(false);
     } catch (error) {
       console.error("Error accepting friend request:", error);
@@ -66,7 +73,11 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
         prevUsers.filter((user) => user._id !== senderId)
       );
       refetchUser();
-      setFriendRequestCount((prevCount) => prevCount - 1); // Decrease count
+      setFriendRequestCount((prevCount) => {
+        const newCount = prevCount - 1;
+        localStorage.setItem("friendRequestCount", newCount); // Update localStorage
+        return newCount;
+      });
       setIsDropdownOpen(false);
     } catch (error) {
       console.error("Error rejecting friend request:", error);
@@ -97,19 +108,18 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
   if (error) {
     console.error("Error fetching friend request users:", error);
   }
-  // eslint-disable-next-line no-unused-vars
+
   const totalFriendRequest = friendRequestIds.length;
 
-  // console.log(totalFriendRequest);
   return (
     <div className="relative">
       <IoIosPersonAdd
         className="text-lg md:text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
-      {friendRequestCount > 0 && (
-        <div className="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs">
-          {friendRequestCount ? totalFriendRequest : ""}
+      {totalFriendRequest > 0 && (
+        <div className="absolute -top-2 -right-2 md:-right-2 flex items-center justify-center w-4 md:w-5 h-4 md:h-5 rounded-full bg-red-500 text-white text-xs">
+          {totalFriendRequest}
         </div>
       )}
 
