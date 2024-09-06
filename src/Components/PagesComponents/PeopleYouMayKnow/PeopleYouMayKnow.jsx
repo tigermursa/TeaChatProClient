@@ -50,31 +50,31 @@ const PeopleYouMayKnow = () => {
   }
 
   return (
-    <div className="bg-people-background h-screen">
-      <div className="overlay h-screen">
-        <div className="flex flex-wrap gap-8 justify-center pt-5">
+    <div className="bg-people-background h-screen ">
+      <div className="overlay h-screen ">
+        <div className="flex flex-wrap gap-8 justify-center pt-5 ">
           {data?.data?.map((user) => (
             <div
               key={user?._id}
-              className="border border-primary rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 w-[240px] hover:scale-105 hover:shadow-2xl"
+              className="bg-white bg-opacity-0 w-[220px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
             >
-              <div className="relative w-full h-40 bg-gradient-to-r from-primary to-primaryDark">
+              <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
                 <Img
                   src={user?.userImage}
                   alt={user?.username}
-                  className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 w-24 h-24 object-cover rounded-full border-4 border-white shadow-lg"
+                  className="w-24 h-24 object-cover rounded-full"
                 />
               </div>
-              <div className="p-6 flex flex-col items-center">
-                <p className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="p-4 text-center">
+                <p className="text-[16px] font-semibold text-gray-100 mb-3 truncate">
                   {user?.username}
                 </p>
                 <button
                   onClick={() => handleSendFriendRequest(user?._id)}
-                  className={`px-6 py-2 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                  className={`w-full py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
                     sentFriendRequestsArray.includes(user?._id)
-                      ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-                      : "bg-primary text-white hover:bg-primaryDark"
+                      ? "bg-gray-400 text-gray-800 cursor-not-allowed"
+                      : " bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
                   }`}
                   disabled={sentFriendRequestsArray.includes(user?._id)}
                 >

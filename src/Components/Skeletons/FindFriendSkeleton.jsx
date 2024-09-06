@@ -26,7 +26,7 @@ const FindFriendSkeleton = () => {
         {skeletonData.map((data) => (
           <div
             key={data.id}
-            className="h-[230px] w-[180px] border border-primary rounded-md flex items-center justify-center"
+            className="h-[225px] w-[220px] border border-primary rounded-md flex items-center justify-center"
           >
             <Loader />
           </div>
