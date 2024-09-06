@@ -7,6 +7,7 @@ import {
 import { toast } from "react-toastify";
 import { useSocket } from "../../../Providers/SocketProvider";
 import Loader from "../../SmallComponents/Loader/Loader";
+import FindFriendSkeleton from "../../Skeletons/FindFriendSkeleton";
 
 const PeopleYouMayKnow = () => {
   const { currentUser, refetch } = useAuth();
@@ -44,14 +45,14 @@ const PeopleYouMayKnow = () => {
   if (isFetching || isLoading) {
     return (
       <div className="h-full">
-        <Loader />
+        <FindFriendSkeleton/>
       </div>
     );
   }
 
   return (
     <div className="p-0 flex   justify-center items-center flex-col ">
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
         {data?.data?.map((user) => (
           <div
             key={user?._id}
