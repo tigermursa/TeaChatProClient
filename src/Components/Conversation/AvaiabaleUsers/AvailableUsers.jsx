@@ -60,15 +60,14 @@ const AvailableUsers = ({
                     <h2 className="mt-4 text-sm text-white font-bold">
                       {user?.username}
                     </h2>
-                    <div className="mt-[25px] border">
+                    <div className="mt-[25px] border text-xs text-white p-2 rounded-md hover:bg-primary hover:font-semibold">
                       <button
-                        className="flex text-[10.8px] items-center justify-center ms-5 pt-[5px] pb-[5px] px-[4px] text-center w-[112px] border text-[#172B4D] hover:text-white hover:bg-[#172B4D] bg-white rounded"
+                        className=""
                         onClick={() => {
                           handleUserSelect(user);
                           markMessageAsRead(user.receiverId);
                         }}
                       >
-                        
                         MESSAGE
                       </button>
                     </div>
