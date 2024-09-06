@@ -50,12 +50,12 @@ const PeopleYouMayKnow = () => {
   }
 
   return (
-    <div className="p-6 flex   justify-center items-center flex-col pt-44">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="p-0 flex   justify-center items-center flex-col">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8">
         {data?.data?.map((user) => (
           <div
             key={user?._id}
-            className="bg-gray-800 bg-opacity-40 border border-primary rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 w-[180px]"
+            className=" border border-primary rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 w-[180px]"
           >
             <Img
               src={user?.userImage}
@@ -63,12 +63,12 @@ const PeopleYouMayKnow = () => {
               className="w-full h-32 object-cover rounded-t-lg"
             />
             <div className="p-4 flex flex-col items-center">
-              <h3 className="text-lg font-semibold text-gray-200 mb-2">
+              <p className="text-sm font-semibold text-gray-200 mb-2">
                 {user?.username}
-              </h3>
+              </p>
               <button
                 onClick={() => handleSendFriendRequest(user?._id)}
-                className="px-4 py-2 bg-primary text-white font-semibold rounded-full hover:bg-primaryDark transition duration-200"
+                className="px-4 py-2 text-sm bg-primary text-white font-semibold rounded-full hover:bg-primaryDark transition duration-200"
                 disabled={sentFriendRequestsArray.includes(user?._id)}
               >
                 {sentFriendRequestsArray.includes(user?._id)

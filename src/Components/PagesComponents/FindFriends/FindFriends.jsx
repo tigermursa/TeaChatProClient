@@ -34,7 +34,7 @@ const FindFriends = () => {
             }}
           >
             <motion.div
-              className="bg-gray-800 text-white p-6 rounded-lg shadow-lg relative w-full max-w-3xl"
+              className="bg-gray-900  bg-opacity-95 text-white p-6 rounded-lg shadow-lg relative  h-[600px] overflow-x-scroll"
               initial={{ y: "-100vh" }}
               animate={{ y: 0 }}
               exit={{ y: "100vh" }}
