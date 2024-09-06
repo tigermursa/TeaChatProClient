@@ -80,7 +80,7 @@ const SignUpForm = () => {
           {...register("username", { required: "Name is required" })}
           type="text"
           placeholder="Name"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.username && (
           <span className="text-red-500">{errors.username.message}</span>
@@ -93,7 +93,7 @@ const SignUpForm = () => {
           })}
           type="email"
           placeholder="Email"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
@@ -101,7 +101,7 @@ const SignUpForm = () => {
 
         <select
           {...register("gender", { required: "Gender is required" })}
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black text-slate-100   border-gray-300 rounded-md focus:outline-none focus:ring-0 "
         >
           <option value="">Select Gender</option>
           <option value="male">Male</option>
@@ -115,7 +115,7 @@ const SignUpForm = () => {
           {...register("location", { required: "Location is required" })}
           type="text"
           placeholder="Location"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.location && (
           <span className="text-red-500">{errors.location.message}</span>
@@ -124,7 +124,7 @@ const SignUpForm = () => {
           {...register("work", { required: "Work is required" })}
           type="text"
           placeholder="Work"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.work && (
           <span className="text-red-500">{errors.work.message}</span>
@@ -147,7 +147,7 @@ const SignUpForm = () => {
           })}
           type="number"
           placeholder="Age"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.age && (
           <span className="text-red-500">{errors.age.message}</span>
@@ -160,7 +160,7 @@ const SignUpForm = () => {
           })}
           type="password"
           placeholder="Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
@@ -173,7 +173,7 @@ const SignUpForm = () => {
           })}
           type="password"
           placeholder="Confirm Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
         />
         {errors.confirmPassword && (
           <span className="text-red-500">{errors.confirmPassword.message}</span>
