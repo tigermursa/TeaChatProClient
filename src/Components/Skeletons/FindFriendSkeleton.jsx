@@ -13,6 +13,9 @@ const skeletonData = [
   { id: 10 },
   { id: 11 },
   { id: 12 },
+  { id: 13 },
+  { id: 14 },
+  { id: 15 },
 ];
 
 const FindFriendSkeleton = () => {
