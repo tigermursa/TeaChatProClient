@@ -38,13 +38,13 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="max-w-xs mt-20 p-8 border border-gray-300 rounded-lg shadow-md">
+    <div className="max-w-xs mt-20 p-8 border border-primary hover:border-primaryLight rounded-lg shadow-md ">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           {...register("email", { required: "Email is required" })}
           type="text"
           placeholder="Email address or phone number"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
@@ -54,7 +54,7 @@ const LoginForm = () => {
           {...register("password", { required: "Password is required" })}
           type="password"
           placeholder="Password"
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border bg-black bg-opacity-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
@@ -62,7 +62,7 @@ const LoginForm = () => {
 
         <button
           type="submit"
-          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+          className="w-full py-2 bg-primary bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-primary"
           disabled={isLoading}
         >
           {isLoading ? "Logging in..." : "Log in"}
@@ -72,11 +72,11 @@ const LoginForm = () => {
           Forgotten password?
         </a>
 
-        <div className="border-t border-gray-300 my-4"></div>
+        <div className=" border-gray-300 my-4"></div>
         <Link to={"/sign-up"}>
           <button
             type="button"
-            className="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
+            className="w-full py-2 bg-green-500 bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-green-600 hover:border-green-600"
           >
             Create new account
           </button>

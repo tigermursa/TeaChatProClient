@@ -3,9 +3,11 @@ import LoginTitle from "../../Components/PagesComponents/LoginPage/LoginTitle";
 
 const LoginPage = () => {
   return (
-    <div className="flex justify-between items-center max-w-[850px] mx-auto pt-[10rem]">
-      <LoginTitle />
-      <LoginForm />
+    <div className="bg-gray-950 h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-center max-w-[850px] mx-auto pt-[10rem]">
+        <LoginTitle />
+        <LoginForm />
+      </div>
     </div>
   );
 };
