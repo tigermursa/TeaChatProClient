@@ -6,7 +6,6 @@ import {
 } from "../../../redux/features/friend/friendApi";
 import { toast } from "react-toastify";
 import { useSocket } from "../../../Providers/SocketProvider";
-import Loader from "../../SmallComponents/Loader/Loader";
 import FindFriendSkeleton from "../../Skeletons/FindFriendSkeleton";
 
 const PeopleYouMayKnow = () => {
