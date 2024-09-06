@@ -181,10 +181,10 @@ const SignUpForm = () => {
 
         <button
           type="submit"
-          className="w-full py-2 mt-5 bg-blue-600 bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-blue-700 hover:border-blue-700"
+          className="w-full py-2 mt-5 bg-primary bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-green-700 hover:border-green-700"
           disabled={isRegisterLoading || isUploading}
         >
-          {isRegisterLoading || isUploading ? "Registering..." : "Register Now"}
+          {isRegisterLoading || isUploading ? "Please wait..." : "Register Now"}
         </button>
       </form>
     </div>
