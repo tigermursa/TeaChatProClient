@@ -14,7 +14,7 @@ const SmartNav = ({ currentUser, refetch }) => {
   return (
     <div className="flex items-center justify-center gap-6">
       <Link to={"/"}>
-        <IoHome className="text-lg md:text-2xl text-white cursor-pointer" />
+        <IoHome className="text-lg md:text-2xl text-purple-600 cursor-pointer" />
       </Link>
       <FriendRequests currentUser={currentUser} refetchUser={refetch} />
       <FaGlobeAsia className="text-lg md:text-2xl text-white cursor-pointer" />
