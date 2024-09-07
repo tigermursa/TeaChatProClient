@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
   const [unreadMessages, setUnreadMessages] = useState({});
   const { currentUser } = useAuth();
   const [friendRequestCount, setFriendRequestCount] = useState(0);
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://teachat-server.onrender.com";
 
   useEffect(() => {
     // Load unread messages and friend request count from localStorage

@@ -18,7 +18,7 @@ const ChatDashboard = () => {
   };
 
   const friendsArray = currentUser?.data?.friends || [];
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://teachat-server.onrender.com";
 
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState({});
