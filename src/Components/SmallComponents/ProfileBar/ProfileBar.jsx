@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaCog, FaUser, FaPen, FaPlus, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaUser, FaPen, FaPlus, FaSignOutAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
@@ -69,12 +69,12 @@ const ProfileBar = () => {
 
   return (
     <>
-      <div className="relative flex justify-between sm:gap-0 gap-6 items-center me-2 sm:me-10 ">
+      <div className="relative flex justify-between   items-center border border-primaryDark">
         <Link to={"/profile"}>
           <div className="flex items-center sm:gap-2  px-2 py-2">
             <Img
               src={user?.userImage}
-              className="w-[30px] sm:w-[60px] h-[30px] sm:h-[60px] object-cover rounded-full border-[2px] border-purple-100"
+              className="w-[55px] sm:w-[60px] h-[55px] sm:h-[60px]  object-fill rounded-full border-[2px] border-purple-100"
               alt="user profile"
             />
             <div className="hidden sm:block">
@@ -90,11 +90,12 @@ const ProfileBar = () => {
         <div className="">
           <SmartNav currentUser={currentUser} refetch={refetch} />
         </div>
+        {/* drop down */}
         <div>
           <div className="relative">
-            <FaCog
+            <FaBars
               onClick={handleMenuToggle}
-              className="text-gray-200 text-lg md:text-2xl  cursor-pointer hover:animate-spin"
+              className="text-gray-200 text-2xl me-5 cursor-pointer hover:text-gray-400"
             />
             {/* Dropdown Menu */}
             {isMenuOpen && (

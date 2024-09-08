@@ -14,16 +14,16 @@ const SmartNav = ({ currentUser, refetch }) => {
   return (
     <div className="flex items-center justify-center gap-6">
       <Link to={"/"}>
-        <IoHome className="text-lg md:text-2xl text-white cursor-pointer" />
+        <IoHome className="text-2xl text-white cursor-pointer" />
       </Link>
       <FriendRequests currentUser={currentUser} refetchUser={refetch} />
-      <FaGlobeAsia className="text-lg md:text-2xl text-white cursor-pointer" />
+      <FaGlobeAsia className="text-2xl hidden text-white cursor-pointer" />
       <Link to={"/people"}>
-        <FaSearch className="text-lg md:text-2xl text-white cursor-pointer"/>
+        <FaSearch className="text-2xl text-white cursor-pointer"/>
       </Link>
       <Link to={"/chat"}>
         <div className="relative">
-          <HiChatBubbleLeftRight className="text-lg md:text-3xl text-white cursor-pointer" />
+          <HiChatBubbleLeftRight className="text-3xl text-white cursor-pointer" />
           {unreadCount > 0 && (
             <div className="absolute -top-2 -right-4 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
               {unreadCount}

@@ -114,7 +114,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
   return (
     <div className="relative">
       <IoIosPersonAdd
-        className="text-lg md:text-3xl text-white cursor-pointer"
+        className="text-3xl text-white cursor-pointer"
         onClick={handleIconClick}
       />
       {totalFriendRequest > 0 && (
@@ -126,7 +126,7 @@ const FriendRequests = ({ currentUser, refetchUser }) => {
       {isDropdownOpen && (
         <div
           ref={dropdownRef}
-          className="absolute top-11 w-80 bg-gray-800 z-10 text-white shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 ease-in-out opacity-100"
+          className="absolute top-14 -left-[8rem]  w-80 bg-gray-800 z-10 text-white shadow-2xl rounded-lg overflow-hidden transition-opacity duration-300 ease-in-out opacity-100"
         >
           {friendRequestUsers.length ? (
             friendRequestUsers.map((user) => (
