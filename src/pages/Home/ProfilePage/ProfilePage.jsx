@@ -13,8 +13,7 @@ import Error from "../../../Components/SmallComponents/Error/Error";
 import Loader from "../../../Components/SmallComponents/Loader/Loader";
 import useAuth from "../../../hooks/useAuth";
 import UpdateProfile from "./UpdateProfile";
-
-import MyButton from "../../../Components/SmallComponents/HomeButton/HomeButton";
+import MyButton from "../../../Components/SmallComponents/Buttons/MyButton";
 
 const ProfilePage = () => {
   const { currentUser, isLoading, isError, refetch } = useAuth();
