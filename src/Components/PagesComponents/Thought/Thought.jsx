@@ -25,7 +25,7 @@ const Thought = () => {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <div className="relative w-[50%] mx-auto">
+      <div className="relative w-[50%] mx-auto" style={{ bottom: "10%" }}>
         {allThoughts.map((thought, index) => (
           <div
             key={thought._id}
@@ -33,7 +33,7 @@ const Thought = () => {
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div className="p-4  rounded-lg text-center">
+            <div className="p-4  rounded-lg text-center ">
               <p className="text-white text-xl md:text-2xl font-semibold">
                 {thought.text}
               </p>

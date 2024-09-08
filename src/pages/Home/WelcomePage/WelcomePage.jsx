@@ -1,16 +1,21 @@
 import Thought from "../../../Components/PagesComponents/Thought/Thought";
-import video from "../../../assets/bg-videos/bg-video.mp4"; // Correct the import
+import videoMp4 from "../../../assets/bg-videos/bg-video.mp4"; // MP4 format
+import fallbackImage from "../../../assets/fallbackImage.webp";
 
 const WelcomePage = () => {
   return (
     <div className="relative h-screen overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src={video} // Use the imported variable
         autoPlay
         loop
         muted
-      />
+        playsInline
+        poster={fallbackImage} // Fallback image while the video loads
+      >
+        <source src={videoMp4} type="video/mp4" /> {/* MP4 format */}
+        Your browser does not support the video tag.
+      </video>
       <div className="absolute top-0 left-0 w-full h-full overlay"></div>
       <Thought />
     </div>
