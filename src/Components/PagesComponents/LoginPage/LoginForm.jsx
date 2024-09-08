@@ -2,8 +2,16 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../redux/features/auth/authApi";
+import { useState } from "react";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   const {
     register,
     handleSubmit,
@@ -50,12 +58,24 @@ const LoginForm = () => {
           <span className="text-red-500">{errors.email.message}</span>
         )}
 
-        <input
-          {...register("password", { required: "Password is required" })}
-          type="password"
-          placeholder="Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <div className="relative">
+          <input
+            {...register("password", { required: "Password is required" })}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="w-full px-4 py-2 pr-10 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div
+            className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <IoIosEyeOff className="text-white" />
+            ) : (
+              <IoIosEye className="text-white" />
+            )}
+          </div>
+        </div>
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
         )}
