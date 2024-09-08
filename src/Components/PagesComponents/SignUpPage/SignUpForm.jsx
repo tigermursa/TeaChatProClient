@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; // Remove ToastContainer
 import { useRegisterMutation } from "../../../redux/features/auth/authApi";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 const SignUpForm = () => {
   const {
@@ -18,6 +19,8 @@ const SignUpForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const saveImage = async () => {
     if (image) {
@@ -64,8 +67,7 @@ const SignUpForm = () => {
       navigate("/");
       toast.success("Registration successful!");
     } catch (error) {
-      console.log(
-        error?.data?.errors);
+      console.log(error?.data?.errors);
       const errorMessage =
         error?.data?.errors[0].message ||
         "Registration failed. Please try again.";
@@ -73,6 +75,13 @@ const SignUpForm = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prevState) => !prevState);
+  };
   return (
     <div className="max-w-md mx-auto mt-10 p-8 border border-primary bg-opacity-0 rounded-lg shadow-md bg-white">
       <h2 className="text-2xl font-bold mb-6 text-center text-slate-100">
@@ -156,28 +165,56 @@ const SignUpForm = () => {
           <span className="text-red-500">{errors.age.message}</span>
         )}
 
-        <input
-          {...register("password", {
-            required: "Password is required",
-            minLength: { value: 8, message: "Minimum length is 8 characters" },
-          })}
-          type="password"
-          placeholder="Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
-        />
+        <div className="relative">
+          <input
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Minimum length is 8 characters",
+              },
+            })}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="w-full px-4 py-2 pr-10 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none"
+          />
+          <div
+            className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <IoIosEyeOff className="text-white" />
+            ) : (
+              <IoIosEye className="text-white" />
+            )}
+          </div>
+        </div>
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
         )}
 
-        <input
-          {...register("confirmPassword", {
-            required: "Confirm password is required",
-            validate: (value) => value === password || "Passwords do not match",
-          })}
-          type="password"
-          placeholder="Confirm Password"
-          className="w-full px-4 py-2 border bg-black bg-opacity-0 text-slate-100  border-gray-300 rounded-md focus:outline-none  "
-        />
+        <div className="relative">
+          <input
+            {...register("confirmPassword", {
+              required: "Confirm password is required",
+              validate: (value) =>
+                value === password || "Passwords do not match",
+            })}
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            className="w-full px-4 py-2 pr-10 border bg-black bg-opacity-0 text-slate-100 border-gray-300 rounded-md focus:outline-none"
+          />
+          <div
+            className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+            onClick={toggleConfirmPasswordVisibility}
+          >
+            {showConfirmPassword ? (
+              <IoIosEyeOff className="text-white" />
+            ) : (
+              <IoIosEye className="text-white" />
+            )}
+          </div>
+        </div>
         {errors.confirmPassword && (
           <span className="text-red-500">{errors.confirmPassword.message}</span>
         )}
