@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "welcome-background": "url('./src/assets/welcomepagebg.webp')",
-        "chat-background": "url('./src/assets/chatpagebg.webp')",
-        "profile-background": "url('./src/assets/profile-cover-bg.webp')",
-        "people-background": "url('./src/assets/peoples-bg.webp')",
+        "welcome-background": "url('./public/welcomepagebg.webp')",
+        "chat-background": "url('./public/chatpagebg.webp')",
+        "profile-background": "url('./public/profile-cover-bg.webp')",
+        "people-background": "url('./public/peoples-bg.webp')",
       },
       boxShadow: {
         "shadow-1": "0px 0px 60px 0px rgba(0, 0, 0, 0.05)",

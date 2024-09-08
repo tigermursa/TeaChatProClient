@@ -5,9 +5,8 @@ import { motion } from "framer-motion";
 import { useSocket } from "../../../Providers/SocketProvider";
 import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
-import "./ChatDashboard.css";
 import AvailableUsers from "../AvaiabaleUsers/AvailableUsers";
-
+import "./ChatDashboard.css"
 const ChatDashboard = () => {
   const { currentUser } = useAuth();
   const { socket, activeUsers } = useSocket();
