@@ -67,6 +67,11 @@ const ProfileBar = () => {
     setIsMenuOpen(false);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  }
+
+
   return (
     <>
       <div className="relative flex justify-between   items-center border border-primaryDark">
@@ -101,7 +106,7 @@ const ProfileBar = () => {
             {isMenuOpen && (
               <div className="absolute top-full right-4 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48 z-20">
                 <Link to={"/profile"}>
-                  <button className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3">
+                  <button  onClick={closeMenu} className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3">
                     <FaUser className="mr-2" />
                     My Profile
                   </button>
