@@ -6,7 +6,8 @@ import { useSocket } from "../../../Providers/SocketProvider";
 import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
 import AvailableUsers from "../AvaiabaleUsers/AvailableUsers";
-import "./ChatDashboard.css"
+import style from "./ChatDashboard.css"
+
 const ChatDashboard = () => {
   const { currentUser } = useAuth();
   const { socket, activeUsers } = useSocket();
@@ -160,7 +161,7 @@ const ChatDashboard = () => {
   };
 
   return (
-    <div className="bg-chat-background bg-cover h-screen overflow-y-scroll">
+    <div className="bg-chat-background bg-cover h-screen overflow-y-scroll" style={{style}}>
       <div className="overlay h-screen">
         <div className="">
           <AvailableUsers
