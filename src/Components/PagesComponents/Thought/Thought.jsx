@@ -24,7 +24,7 @@ const Thought = () => {
   }, [allThoughts.length]);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center h-full">
       <div className="relative w-[50%] mx-auto">
         {allThoughts.map((thought, index) => (
           <div
@@ -34,7 +34,7 @@ const Thought = () => {
             }`}
           >
             <div className="p-4  rounded-lg text-center">
-              <p className="text-white text-2xl font-semibold">
+              <p className="text-white text-xl md:text-2xl font-semibold">
                 {thought.text}
               </p>
               <p className="text-gray-300 font-medium text-end ">
