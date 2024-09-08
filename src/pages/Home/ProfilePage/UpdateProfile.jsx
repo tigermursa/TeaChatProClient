@@ -35,6 +35,17 @@ const UpdateProfile = ({ userData, onClose,refetch }) => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
+            <label className="block text-gray-400">Name</label>
+            <input
+              type="text"
+              {...register("username", { required: true })}
+              className="w-full p-2 mt-2 bg-gray-700 rounded focus:outline-none"
+            />
+            {errors.work && (
+              <span className="text-red-500">Work is required</span>
+            )}
+          </div>
+          <div className="mb-4">
             <label className="block text-gray-400">Work</label>
             <input
               type="text"

@@ -1,15 +1,16 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-const HomeButton = () => {
+const MyButton = ({ name, link }) => {
   return (
     <div>
-      <Link to={"/"}>
+      <Link to={link}>
         <button className="text-gray-200 font-semibold hover:text-gray-300 mt-10 border-[2px] hover:border-primaryDark border-primary p-2 rounded-xl me-5">
-          Home
+          {name}
         </button>
       </Link>
     </div>
   );
 };
 
-export default HomeButton;
+export default MyButton;

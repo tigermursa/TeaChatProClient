@@ -9,6 +9,7 @@ import PeopleYouMayKnow from "../Components/PagesComponents/PeopleYouMayKnow/Peo
 import MainLayout from "../Components/Layouts/MainLayout";
 import { SocketProvider } from "../Providers/SocketProvider";
 import DynamicProfilePage from "../pages/Home/ProfilePage/DynamicProfilePage";
+import MyFriends from "../Components/SmallComponents/MyFriends/MyFriends";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "people",
         element: <PeopleYouMayKnow />,
+      },
+      {
+        path: "my-friends",
+        element: <MyFriends />,
       },
     ],
   },
