@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
 import AvailableUsers from "../AvaiabaleUsers/AvailableUsers";
 import "./ChatDashboard.module.css"
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
 const ChatDashboard = () => {
   const { currentUser } = useAuth();
   const { socket, activeUsers } = useSocket();
@@ -17,7 +18,8 @@ const ChatDashboard = () => {
   };
 
   const friendsArray = currentUser?.data?.friends || [];
-  const BASE_URL = "https://teachat-server.onrender.com";
+  // const BASE_URL = "https://teachat-server.onrender.com";
+  const BASE_URL = "http://localhost:5000";
 
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState({});
