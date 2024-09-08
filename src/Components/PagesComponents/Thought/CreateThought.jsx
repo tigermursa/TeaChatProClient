@@ -6,10 +6,15 @@ import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 
 const CreateThought = ({ onClose }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
   const [addThought, { isLoading, isError }] = useAddThoughtMutation();
   const { currentUser } = useAuth();
   const user = currentUser?.data;
+
+  // Watch the text input and compute character count
+  const textValue = watch("text", "");
+  const maxChars = 70;
+  const charsLeft = maxChars - textValue.length;
 
   const onSubmit = async (data) => {
     const thoughtData = {
@@ -35,13 +40,23 @@ const CreateThought = ({ onClose }) => {
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <input
+          <textarea
             id="text"
-            type="text"
-            {...register("text", { required: "Thought is required" })}
+            {...register("text", { 
+              required: "Thought is required",
+              maxLength: {
+                value: maxChars,
+                message: `Maximum length is ${maxChars} characters`
+              }
+            })}
             placeholder="Enter your thought"
+            rows="4"
+            maxLength={maxChars}
             className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
+          <p className={`text-gray-400 text-sm mt-1 ${charsLeft < 0 ? 'text-red-500' : ''}`}>
+            {charsLeft} characters left
+          </p>
         </div>
         <button
           type="submit"

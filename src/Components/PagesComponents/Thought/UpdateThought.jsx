@@ -13,7 +13,7 @@ const UpdateThought = ({ thoughtData, onClose, user }) => {
   const { data } = useGetThoughtByUserIdQuery(id);
   const [updateThought, { isLoading, isError }] = useUpdateThoughtMutation();
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, watch } = useForm({
     defaultValues: { text: thoughtData.text || "" },
   });
 
@@ -23,6 +23,11 @@ const UpdateThought = ({ thoughtData, onClose, user }) => {
       reset({ text: data.data.text });
     }
   }, [data, reset]);
+
+  // Watch the text input and compute character count
+  const textValue = watch("text", "");
+  const maxChars = 70;
+  const charsLeft = maxChars - textValue.length;
 
   const onSubmit = async (data) => {
     const updatedThought = {
@@ -39,24 +44,38 @@ const UpdateThought = ({ thoughtData, onClose, user }) => {
       toast.success("Thought updated successfully!");
       onClose(); // Close the modal on success
     } catch (error) {
-      toast.error("Failed to update thought. Please try again.");
+      toast.error("Text cannot exceed 70 characters");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-lg">
+    <div className="max-w-md mx-auto p-6 rounded-lg bg-gray-800">
       <h2 className="text-2xl font-semibold text-white mb-4 text-center">
         Update Your Thought
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <input
+          <textarea
             id="text"
-            type="text"
-            {...register("text", { required: true })} // Register field with react-hook-form
+            {...register("text", {
+              required: "Thought is required",
+              maxLength: {
+                value: maxChars,
+                message: `Maximum length is ${maxChars} characters`,
+              },
+            })}
             placeholder="Enter your updated thought"
+            rows="4"
+            maxLength={maxChars}
             className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           />
+          <p
+            className={`text-gray-400 text-sm mt-1 ${
+              charsLeft < 0 ? "text-red-500" : ""
+            }`}
+          >
+            {charsLeft} characters left
+          </p>
         </div>
         <button
           type="submit"

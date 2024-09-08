@@ -25,7 +25,10 @@ export default {
       },
       // Adding the dark overlay
       backgroundColor: {
-        "dark-overlay": "rgba(0, 0, 0, 0.5)", // Adjust the opacity as needed
+        "dark-overlay": "rgba(0, 0, 0, 0.5)",
+      },
+      fontFamily: {
+        nerko: ["Nerko One", "sans-serif"],
       },
     },
   },
