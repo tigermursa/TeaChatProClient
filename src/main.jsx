@@ -24,7 +24,7 @@ createRoot(document.getElementById("root")).render(
         theme="colored"
         closeButton={false}
         toastClassName={() =>
-          "relative flex p-3 rounded-md justify-center mx-auto items-center w-max  bg-gray-800 text-white shadow-lg mb-4"
+          "relative flex p-3 rounded-md justify-center mx-auto items-center w-max  bg-gray-700 text-white shadow-lg mb-4"
         }
         bodyClassName="text-sm font-medium"
       />
