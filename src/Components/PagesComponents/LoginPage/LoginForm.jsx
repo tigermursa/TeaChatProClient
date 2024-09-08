@@ -46,7 +46,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="max-w-xs mt-20 p-8 border border-primary hover:border-primaryLight rounded-lg shadow-md ">
+    <div className="max-w-xs mt-20 p-4 md:p-8 border border-primary hover:border-primaryLight rounded-lg shadow-md ">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           {...register("email", { required: "Email is required" })}

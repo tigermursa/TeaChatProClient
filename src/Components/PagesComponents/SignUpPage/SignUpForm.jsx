@@ -83,7 +83,7 @@ const SignUpForm = () => {
     setShowConfirmPassword((prevState) => !prevState);
   };
   return (
-    <div className="max-w-md mx-auto mt-10  p-3 md:p-8 border border-primary bg-opacity-0 rounded-lg shadow-md bg-white">
+    <div className="max-w-md mx-auto md:mt-10  p-4  md:p-8 border border-primary bg-opacity-0 rounded-lg shadow-md">
       <h2 className=" text-lg md:text-2xl font-bold mb-6 text-center text-slate-100">
         Register Account
       </h2>
