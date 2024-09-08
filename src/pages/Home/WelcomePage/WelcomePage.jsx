@@ -6,14 +6,14 @@ const WelcomePage = () => {
   return (
     <div className="relative h-screen overflow-hidden">
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-fill"
         autoPlay
         loop
         muted
         playsInline
         poster={fallbackImage} // Fallback image while the video loads
       >
-        <source src={videoMp4} type="video/mp4" /> {/* MP4 format */}
+        <source src={videoMp4} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="absolute top-0 left-0 w-full h-full overlay"></div>
