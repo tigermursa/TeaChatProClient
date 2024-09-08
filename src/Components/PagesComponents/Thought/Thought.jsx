@@ -10,7 +10,7 @@ const Thought = () => {
   const defaultThought = {
     _id: "default",
     text: "Share your thought now!",
-    name: "Team Teachat",
+    name: "Team Teachat ☕",
   };
 
   const allThoughts = [defaultThought, ...thoughts];
