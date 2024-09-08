@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; // Remove ToastContainer
 import { useRegisterMutation } from "../../../redux/features/auth/authApi";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
@@ -83,8 +83,8 @@ const SignUpForm = () => {
     setShowConfirmPassword((prevState) => !prevState);
   };
   return (
-    <div className="max-w-md mx-auto mt-10 p-8 border border-primary bg-opacity-0 rounded-lg shadow-md bg-white">
-      <h2 className="text-2xl font-bold mb-6 text-center text-slate-100">
+    <div className="max-w-md mx-auto mt-10  p-3 md:p-8 border border-primary bg-opacity-0 rounded-lg shadow-md bg-white">
+      <h2 className=" text-lg md:text-2xl font-bold mb-6 text-center text-slate-100">
         Register Account
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -226,6 +226,17 @@ const SignUpForm = () => {
         >
           {isRegisterLoading || isUploading ? "Please wait..." : "Register Now"}
         </button>
+        <a href="#" className="block text-center text-blue-500 hover:underline">
+          Already have an account?
+        </a>
+        <Link to={"/login"}>
+          <button
+            type="button"
+            className="w-full mt-5 py-2 bg-green-500 bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-green-600 hover:border-green-600"
+          >
+           Login
+          </button>
+        </Link>
       </form>
     </div>
   );
