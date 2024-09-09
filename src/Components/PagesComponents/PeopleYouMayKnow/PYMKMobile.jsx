@@ -6,7 +6,6 @@ import {
 } from "../../../redux/features/friend/friendApi";
 import { toast } from "react-toastify";
 import { useSocket } from "../../../Providers/SocketProvider";
-import FindFriendSkeleton from "../../Skeletons/FindFriendSkeleton";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

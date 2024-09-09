@@ -24,7 +24,7 @@ const AvailableUsersDesktop = ({
   );
 
   return (
-    <div className="border-8 border-red-600">
+    <div className="">
       <div className="flex flex-wrap justify-center">
         {filteredUsers?.length > 0 ? (
           filteredUsers.map((userWrapper, index) => {

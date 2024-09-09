@@ -66,26 +66,26 @@ const MyFriends = () => {
   };
 
   return (
-    <div className="bg-chat-background h-screen bg-no-repeat bg-cover">
-      <div className="overlay h-full flex flex-col items-center justify-center">
+    <div className="bg-people-background h-screen bg-no-repeat bg-cover bg-bottom">
+      <div className="overlay h-full">
         {friendsArray.length === 0 ? (
           <p className="text-white text-xl md:text-2xl w-[85%] font-semibold  text-center mt-5">
             Make some friends! 😳
           </p>
         ) : (
-          <div className="flex flex-wrap justify-center">
+          <div className="flex gap-10 justify-center">
             {friendsArray.map((friend) => (
               <div key={friend._id} className="mb-4 mt-5">
-                <div className="w-[120px] border border-primary p-3 rounded-md bg-primaryDark bg-opacity-40">
+                <div className="w-[120px] md:w-[200px] border border-primary p-3 rounded-md bg-primaryDark bg-opacity-40">
                   <Link to={`/profile/${friend._id}`}>
                     <img
                       src={friend.userImage}
                       alt={friend.username}
-                      className="w-20 h-20 mx-auto rounded-full"
+                      className="w-20 h-20 md:w-40 md:h-40 mx-auto rounded-full"
                     />
-                    <div className="text-white text-center mt-2 truncate">
+                    <div className="text-white text-sm md:text-xl text-center mt-2 truncate">
                       <p>{friend.username}</p>
-                      <p className="text-sm mt-1">({friend.work})</p>
+                      <p className="text-sm md:text-lg mt-1">({friend.work})</p>
                     </div>
                   </Link>
                   <button
