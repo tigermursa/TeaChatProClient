@@ -50,7 +50,7 @@ const PeopleYouMayKnow = () => {
   }
 
   return (
-    <div className="bg-people-background h-screen ">
+    <div className="bg-people-background h-screen bg-no-repeat bg-cover bg-bottom">
       <div className="overlay h-screen ">
         <div className="flex flex-wrap gap-8 justify-center pt-5 ">
           {data?.data?.map((user) => (
@@ -62,7 +62,7 @@ const PeopleYouMayKnow = () => {
                 <Img
                   src={user?.userImage}
                   alt={user?.username}
-                  className="w-24 h-24 object-cover rounded-full"
+                  className="w-24 h-24 object-fill bg-center rounded-full"
                 />
               </div>
               <div className="p-4 text-center">

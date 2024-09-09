@@ -162,8 +162,8 @@ const ChatDashboard = () => {
   };
 
   return (
-    <div className="bg-chat-background bg-cover h-screen overflow-y-scroll">
-      <div className="overlay h-screen">
+    <div className="bg-people-background bg-cover h-screen bg-bottom">
+      <div className="overlay ">
         <div className="">
           <AvailableUsers
             friendsArray={friendsArray}
