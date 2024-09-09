@@ -27,16 +27,14 @@ const ConversationArea = ({
   );
   const receiverImage = messages?.receiver?.userImage;
   return (
-    <div className="h-[800px] rounded-2xl flex flex-col items-center">
+    <div className="  h-[95%] lg:h-[700px] rounded-2xl flex flex-col items-center">
       {messages?.receiver?.username && (
         <div className="w-full  h-[100px]  flex items-center justify-center border-b rounded-md ">
           <div className="cursor-pointer">
             <Img
               src={receiverImage}
-              width={40}
-              height={40}
               alt="profile image"
-              className="rounded-full ms-10"
+              className="rounded-full ms-2 md:ms-10 w-[50px] h-[50px]"
             />
           </div>
           <div className="ml-6 mr-auto">

@@ -26,13 +26,13 @@ const TextingPart = ({ messages, user, messageRef }) => {
             return (
               <div key={index} className="flex">
                 <div
-                  className={`max-w-[70%] md:max-w-[40%] text-wrap rounded-lg p-4 mb-4 shadow-sm ${
+                  className={`max-w-[70%] md:max-w-[40%] text-wrap  rounded-lg p-4 mb-4 shadow-sm ${
                     id === user?.id
                       ? "bg-blue-700 text-white ml-auto"
                       : "bg-primary text-white"
                   }`}
                 >
-                  <p className="font-medium text-base">{message}</p>
+                  <p className="font-medium text-sm md:text-lg">{message}</p>
                   {formattedTime && (
                     <p className="text-[8px] text-gray-200 mt-2  text-right">
                       {formattedTime}

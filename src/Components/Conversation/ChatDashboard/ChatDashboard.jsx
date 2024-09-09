@@ -6,7 +6,7 @@ import { useSocket } from "../../../Providers/SocketProvider";
 import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
 
-import "./ChatDashboard.module.css"
+import "./ChatDashboard.module.css";
 import AvailableUsersDesktop from "../AvaiabaleUsers/AvaliableUsersDesktop";
 import AvailableUsersMobile from "../AvaiabaleUsers/AvailableUsersMobile";
 // const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -193,7 +193,7 @@ const ChatDashboard = () => {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 flex justify-center items-center z-[200]"
         >
-          <div className="bg-white rounded-md shadow-lg w-[90%] md:w-[70%] lg:w-[50%]">
+          <div className="bg-white rounded-md shadow-lg w-[100%] md:w-[70%] lg:w-[50%]  h-[100%] md:h-auto">
             <div className="flex justify-end items-center rounded-t-lg pt-2 pe-2 ">
               <button
                 onClick={handleCloseModal}
