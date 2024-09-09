@@ -126,7 +126,7 @@ const ProfilePage = () => {
             </p>
             <p className="flex items-center">
               <FaEnvelope className="mr-2 text-primary" />
-              <span className="text-gray-400 mr-2">Email:</span>{" "}
+              <span className="text-gray-400 mr-2 truncate">Email:</span>{" "}
               {userData?.email}
             </p>
           </div>

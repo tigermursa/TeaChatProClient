@@ -1,91 +1,14 @@
-import { Img } from "react-image";
-import useAuth from "../../../hooks/useAuth";
-import {
-  useGetNotMyFriendQuery,
-  useSentFriendRequestMutation,
-} from "../../../redux/features/friend/friendApi";
-import { toast } from "react-toastify";
-import { useSocket } from "../../../Providers/SocketProvider";
-import FindFriendSkeleton from "../../Skeletons/FindFriendSkeleton";
+import PYMKDesktop from "./PYMKDesktop";
+import PYMKMobile from "./PYMKMobile";
 
 const PeopleYouMayKnow = () => {
-  const { currentUser, refetch } = useAuth();
-  const { socket } = useSocket(); // Access the socket instance
-  const id = currentUser?.data._id; // senderId
-  const {
-    isFetching,
-    isLoading,
-    data,
-    refetch: fetchAgain,
-  } = useGetNotMyFriendQuery(id);
-  const [sentRequest] = useSentFriendRequestMutation();
-
-  const handleSendFriendRequest = async (receiverId) => {
-    try {
-      await sentRequest({ senderId: id, receiverId }).unwrap();
-      refetch();
-      fetchAgain();
-      toast.success("Friend request sent successfully");
-
-      // Emit the friend request event via Socket.IO
-      if (socket) {
-        socket.emit("sendFriendRequest", {
-          senderId: id,
-          receiverId,
-        });
-      }
-    } catch (error) {
-      toast.error(error?.data?.message);
-    }
-  };
-
-  const sentFriendRequestsArray = currentUser?.data?.sentFriendRequests || [];
-
-  if (isFetching || isLoading) {
-    return (
-      <div className="h-full flex justify-center">
-        <FindFriendSkeleton />
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-people-background h-screen bg-no-repeat bg-cover bg-bottom">
-      <div className="overlay h-screen ">
-        <div className="flex flex-wrap gap-8 justify-center pt-5 ">
-          {data?.data?.map((user) => (
-            <div
-              key={user?._id}
-              className="bg-white bg-opacity-0 w-[220px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
-                <Img
-                  src={user?.userImage}
-                  alt={user?.username}
-                  className="w-24 h-24 object-fill bg-center rounded-full"
-                />
-              </div>
-              <div className="p-4 text-center">
-                <p className="text-[16px] font-semibold text-gray-100 mb-3 truncate">
-                  {user?.username}
-                </p>
-                <button
-                  onClick={() => handleSendFriendRequest(user?._id)}
-                  className={`w-full py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
-                    sentFriendRequestsArray.includes(user?._id)
-                      ? "bg-gray-400 text-gray-800 cursor-not-allowed"
-                      : " bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
-                  }`}
-                  disabled={sentFriendRequestsArray.includes(user?._id)}
-                >
-                  {sentFriendRequestsArray.includes(user?._id)
-                    ? "Request Sent"
-                    : "Add Friend"}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div>
+      <div className="hidden sm:block">
+        <PYMKDesktop />
+      </div>
+      <div className=" block sm:hidden">
+        <PYMKMobile />
       </div>
     </div>
   );

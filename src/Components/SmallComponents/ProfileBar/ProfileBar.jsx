@@ -34,7 +34,7 @@ const ProfileBar = () => {
 
   if (isLoading) {
     return (
-      <div className=" bg-welcome-background h-screen w-full">
+      <div className=" bg-people-background bg-no-repeat bg-cover bg-bottom h-screen w-full">
         <div className="overlay h-screen w-full flex justify-center items-center ">
           <Loader />
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; // Remove ToastContainer
 import { useRegisterMutation } from "../../../redux/features/auth/authApi";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
@@ -226,17 +226,12 @@ const SignUpForm = () => {
         >
           {isRegisterLoading || isUploading ? "Please wait..." : "Register Now"}
         </button>
-        <a href="#" className="block text-center text-blue-500 hover:underline">
-          Already have an account?
+        <a
+          href="/login"
+          className="block text-center text-blue-500 hover:underline"
+        >
+          Already have an account ? Sign in
         </a>
-        <Link to={"/login"}>
-          <button
-            type="button"
-            className="w-full mt-5 py-2 bg-green-500 bg-opacity-0 border border-primary text-white font-semibold rounded-md hover:bg-green-600 hover:border-green-600"
-          >
-           Login
-          </button>
-        </Link>
       </form>
     </div>
   );
