@@ -69,8 +69,8 @@ const MyFriends = () => {
     <div className="bg-chat-background h-screen bg-no-repeat bg-cover">
       <div className="overlay h-full flex flex-col items-center justify-center">
         {friendsArray.length === 0 ? (
-          <p className="text-white text-xl mt-5">
-            You have no friends. Make some friends! 😳
+          <p className="text-white text-xl md:text-2xl w-[85%] font-semibold  text-center mt-5">
+            Make some friends! 😳
           </p>
         ) : (
           <div className="flex flex-wrap justify-center">

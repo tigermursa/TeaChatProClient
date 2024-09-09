@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { useSocket } from "../../../Providers/SocketProvider";
 import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
-import AvailableUsers from "../AvaiabaleUsers/AvailableUsers";
+
 import "./ChatDashboard.module.css"
+import AvailableUsersDesktop from "../AvaiabaleUsers/AvaliableUsersDesktop";
+import AvailableUsersMobile from "../AvaiabaleUsers/AvailableUsersMobile";
 // const BASE_URL = import.meta.env.VITE_BASE_URL;
 const ChatDashboard = () => {
   const { currentUser } = useAuth();
@@ -163,9 +165,19 @@ const ChatDashboard = () => {
 
   return (
     <div className="bg-people-background bg-cover h-screen bg-bottom">
-      <div className="overlay ">
+      <div className="overlay h-screen hidden sm:block">
         <div className="">
-          <AvailableUsers
+          <AvailableUsersDesktop
+            friendsArray={friendsArray}
+            users={users}
+            handleUserSelect={handleUserSelect}
+            activeUsers={activeUsers}
+          />
+        </div>
+      </div>
+      <div className="overlay h-screen block sm:hidden">
+        <div className="">
+          <AvailableUsersMobile
             friendsArray={friendsArray}
             users={users}
             handleUserSelect={handleUserSelect}

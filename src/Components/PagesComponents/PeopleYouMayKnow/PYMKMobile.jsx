@@ -10,6 +10,7 @@ import FindFriendSkeleton from "../../Skeletons/FindFriendSkeleton";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Loader from "../../SmallComponents/Loader/Loader";
 
 const PYMKMobile = () => {
   const { currentUser, refetch } = useAuth();
@@ -46,8 +47,10 @@ const PYMKMobile = () => {
 
   if (isFetching || isLoading) {
     return (
-      <div className="h-full flex justify-center">
-        <FindFriendSkeleton />
+      <div className="h-screen w-full bg-people-background  bg-cover bg-no-repeat bg-bottom">
+        <div className="overlay h-full w-full flex justify-center items-center">
+          <Loader />
+        </div>
       </div>
     );
   }
@@ -62,11 +65,11 @@ const PYMKMobile = () => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: data?.data?.length > 1, // Disable infinite scroll if only one item
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 2,
-    autoplay: true,
+    slidesToScroll: 1,
+    autoplay: data?.data?.length > 1, // Disable autoplay if only one item
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
@@ -74,6 +77,7 @@ const PYMKMobile = () => {
     vertical: false,
     swipeToSlide: true,
   };
+
   return (
     <div className="bg-people-background bg-no-repeat bg-cover bg-bottom h-screen">
       <div className="overlay mx-auto h-full">
@@ -81,7 +85,7 @@ const PYMKMobile = () => {
           {data?.data?.map((user) => (
             <div
               key={user?._id}
-              className="bg-white bg-opacity-0  border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-lg "
+              className="bg-white bg-opacity-0 border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-lg"
             >
               <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
                 <Img
@@ -90,7 +94,7 @@ const PYMKMobile = () => {
                   className="w-60 h-60 object-fill bg-center rounded-full"
                 />
               </div>
-              <div className="p-4  text-center">
+              <div className="p-4 text-center">
                 <p className="font-semibold text-gray-100 mb-3 truncate text-2xl font-sans">
                   {user?.username}
                 </p>

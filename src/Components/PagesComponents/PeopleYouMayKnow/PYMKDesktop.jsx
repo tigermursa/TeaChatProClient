@@ -6,18 +6,12 @@ import {
 } from "../../../redux/features/friend/friendApi";
 import { toast } from "react-toastify";
 import { useSocket } from "../../../Providers/SocketProvider";
-import Loader from "../../SmallComponents/Loader/Loader";
 
 const PYMKDesktop = () => {
   const { currentUser, refetch } = useAuth();
   const { socket } = useSocket(); // Access the socket instance
   const id = currentUser?.data._id; // senderId
-  const {
-    isFetching,
-    isLoading,
-    data,
-    refetch: fetchAgain,
-  } = useGetNotMyFriendQuery(id);
+  const { data, refetch: fetchAgain } = useGetNotMyFriendQuery(id);
   const [sentRequest] = useSentFriendRequestMutation();
 
   const handleSendFriendRequest = async (receiverId) => {
