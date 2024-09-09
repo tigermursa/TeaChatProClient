@@ -57,7 +57,7 @@ const AvailableUsersDesktop = ({
                       )}
                     </div>
 
-                    <h2 className="mt-4 text-sm text-white font-bold">
+                    <h2 className="mt-4 text-sm text-white font-bold truncate">
                       {user?.username}
                     </h2>
                     <div className="mt-[25px] border text-xs text-white p-2 rounded-md hover:bg-primary hover:font-semibold">

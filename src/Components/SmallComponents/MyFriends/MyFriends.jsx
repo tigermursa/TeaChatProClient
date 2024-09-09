@@ -81,7 +81,7 @@ const MyFriends = () => {
                     <img
                       src={friend.userImage}
                       alt={friend.username}
-                      className="w-20 h-20 md:w-40 md:h-40 mx-auto rounded-full"
+                      className="w-20 h-20 md:w-40 md:h-40 mx-auto rounded-full object-center object-fill"
                     />
                     <div className="text-white text-sm md:text-xl text-center mt-2 truncate">
                       <p>{friend.username}</p>
