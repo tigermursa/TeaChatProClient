@@ -18,9 +18,14 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    reset, // used to clear the form
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "guest@gmail.com",
+      password: "A@123456",
+    },
+  });
 
   const navigate = useNavigate(); // initialize navigate function
   const [login, { isLoading }] = useLoginMutation();
