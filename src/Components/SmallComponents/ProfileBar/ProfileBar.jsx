@@ -9,6 +9,7 @@ import UpdateThought from "../../PagesComponents/Thought/UpdateThought";
 import LogoutSimple from "../LogOut/LogOutSimple";
 import { Link } from "react-router-dom";
 import SmartNav from "../SmartNav/SmartNav";
+import { FcAbout } from "react-icons/fc";
 
 const ProfileBar = () => {
   const { currentUser, isLoading, isError, refetch } = useAuth();
@@ -69,8 +70,7 @@ const ProfileBar = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-  }
-
+  };
 
   return (
     <>
@@ -106,7 +106,10 @@ const ProfileBar = () => {
             {isMenuOpen && (
               <div className="absolute top-full right-4 mt-2 bg-gray-800 text-white rounded-lg shadow-lg p-4 w-48 z-20">
                 <Link to={"/profile"}>
-                  <button  onClick={closeMenu} className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3">
+                  <button
+                    onClick={closeMenu}
+                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3"
+                  >
                     <FaUser className="mr-2" />
                     My Profile
                   </button>
@@ -118,7 +121,15 @@ const ProfileBar = () => {
                   <FaPlus className="mr-2" />
                   Create Thought
                 </button>
-
+                <Link to={"/about"}>
+                  <button
+                    onClick={closeMenu}
+                    className="w-full text-left px-2 py-1 hover:bg-gray-700 rounded flex items-center mb-3"
+                  >
+                    <FcAbout className="mr-2" />
+                    About
+                  </button>
+                </Link>
                 <button
                   onClick={() =>
                     handleUpdateThoughtClick({
