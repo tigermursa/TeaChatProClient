@@ -10,6 +10,7 @@ import MainLayout from "../Components/Layouts/MainLayout";
 import { SocketProvider } from "../Providers/SocketProvider";
 import DynamicProfilePage from "../pages/Home/ProfilePage/DynamicProfilePage";
 import MyFriends from "../Components/SmallComponents/MyFriends/MyFriends";
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -46,12 +47,17 @@ const router = createBrowserRouter([
         path: "my-friends",
         element: <MyFriends />,
       },
+      {
+        path: "/about",
+        element: <About />,
+      },
     ],
   },
   {
     path: "/login",
     element: <LoginPage />,
   },
+  
   {
     path: "/sign-up",
     element: <SignUpPage />,
