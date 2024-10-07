@@ -1,5 +1,5 @@
 import SignUpForm from "../../Components/PagesComponents/SignUpPage/SignUpForm";
-import SignUpTitle from "../../Components/PagesComponents/SignUpPage/SignUpTitle";
+import SignUpTitle from "../../Components/PagesComponents/SignUpPage/SignUPTitle";
 
 const SignUpPage = () => {
   return (
