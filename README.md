@@ -1,8 +1,31 @@
-# React + Vite
+# Teachat Pro v1.0.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
+Teachat Pro is a real-time chatting application that allows users to connect with friends, share thoughts, and communicate seamlessly.
 
-Currently, two official plugins are available:
+## Features
+- **Friend Management:**
+  - Users can send, accept, and reject friend requests.
+  - Chat with only accepted friends in real-time.
+  - Remove users from the friend list.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+
+### Backend
+- **Node.js**: JavaScript runtime for building scalable network applications.
+- **Express.js**: Fast, unopinionated, minimalist web framework for Node.js.
+- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript, enhancing code quality and maintainability.
+- **Socket.io**: Enables real-time, bidirectional, and event-based communication between clients and servers.
+
+**Backend hosted at:** [https://example-backend-url.com](https://example-backend-url.com)
+
+### Frontend
+- **React**: A JavaScript library for building user interfaces.
+- **Vite**: A fast build tool that provides a more efficient development experience.
+- **React Router**: Declarative routing for React.js applications.
+- **Framer Motion**: A library for animations in React.
+- **React Icons**: Easily add SVG icons in your project.
+
+**Frontend hosted at:** [https://example-frontend-url.com](https://example-frontend-url.com)
+
+
