@@ -11,6 +11,6 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
-    // host: "0.0.0.0", // Optional: Use if you need access from other devices on the same network
+     host: "0.0.0.0", // Optional: Use if you need access from other devices on the same network
   },
 });
