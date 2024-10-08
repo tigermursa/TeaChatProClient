@@ -5,12 +5,12 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-         target: 'https://teachat-server.onrender.com',
+        target: "https://teachat-server.onrender.com",
         // target: "http://localhost:5000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
-    host: "0.0.0.0", // Optional: Use if you need access from other devices on the same network
+    // host: "0.0.0.0", // Optional: Use if you need access from other devices on the same network
   },
 });
