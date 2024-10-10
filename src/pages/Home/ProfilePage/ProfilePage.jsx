@@ -136,7 +136,7 @@ const ProfilePage = () => {
       {/* <MyFriends myFriendsIdArray={myFriendsIdArray} userId={userId} /> */}
 
       {/* Home Button */}
-      <div className="mt-6">
+      <div className="mt-6 hidden">
         <MyButton name={"Friends"} link={"/my-friends"} />
       </div>
 
