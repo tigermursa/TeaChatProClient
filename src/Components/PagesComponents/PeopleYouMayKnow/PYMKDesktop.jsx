@@ -36,42 +36,48 @@ const PYMKDesktop = () => {
   const sentFriendRequestsArray = currentUser?.data?.sentFriendRequests || [];
 
   return (
-    <div className="bg-people-background h-screen bg-no-repeat bg-cover bg-bottom">
-      <div className="overlay h-screen flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center pt-5">
-          {/* Card starts from here */}
-          {data?.data?.map((user) => (
-            <div
-              key={user?._id}
-              className="bg-white bg-opacity-0 w-[150px] lg:w-[200px] h-[250px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
-                <Img
-                  src={user?.userImage}
-                  alt={user?.username}
-                  className="w-24 h-24 object-fill bg-center rounded-full"
-                />
+    <div className="bg-people-background  bg-no-repeat bg-cover bg-bottom border-none">
+      <div className="overlay  flex justify-center ">
+        <div className="w-full max-w-6xl h-full pt-5">
+          {" "}
+          {/* Main fixed container */}
+          <div className="cursor-grab grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center h-[calc(100vh-100px)] overflow-y-auto">
+            {" "}
+            {/* Scrollable container */}
+            {/* Card starts from here */}
+            {data?.data?.map((user) => (
+              <div
+                key={user?._id}
+                className="bg-white bg-opacity-0 w-[150px] lg:w-[200px] h-[250px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
+                  <Img
+                    src={user?.userImage}
+                    alt={user?.username}
+                    className="w-24 h-24 object-fill bg-center rounded-full"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <p className="font-semibold text-gray-100 mb-3 truncate text-sm lg:text-lg">
+                    {user?.username}
+                  </p>
+                  <button
+                    onClick={() => handleSendFriendRequest(user?._id)}
+                    className={`w-full py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+                      sentFriendRequestsArray.includes(user?._id)
+                        ? "bg-gray-400 text-gray-800 cursor-not-allowed"
+                        : "bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
+                    }`}
+                    disabled={sentFriendRequestsArray.includes(user?._id)}
+                  >
+                    {sentFriendRequestsArray.includes(user?._id)
+                      ? "Request Sent"
+                      : "Add Friend"}
+                  </button>
+                </div>
               </div>
-              <div className="p-4 text-center">
-                <p className="font-semibold text-gray-100 mb-3 truncate text-sm lg:text-lg">
-                  {user?.username}
-                </p>
-                <button
-                  onClick={() => handleSendFriendRequest(user?._id)}
-                  className={`w-full py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
-                    sentFriendRequestsArray.includes(user?._id)
-                      ? "bg-gray-400 text-gray-800 cursor-not-allowed"
-                      : "bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
-                  }`}
-                  disabled={sentFriendRequestsArray.includes(user?._id)}
-                >
-                  {sentFriendRequestsArray.includes(user?._id)
-                    ? "Request Sent"
-                    : "Add Friend"}
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

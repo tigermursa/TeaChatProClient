@@ -4,7 +4,7 @@ import fallbackImage from "../../../assets/fallbackImage.webp";
 
 const WelcomePage = () => {
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover object-center"
         autoPlay

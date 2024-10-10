@@ -3,9 +3,9 @@ import ProfileBar from "../SmallComponents/ProfileBar/ProfileBar";
 
 const MainLayout = () => {
   return (
-    <div className="bg-primaryDark bg-cover bg-center h-screen overflow-hidden">
+    <div className="bg-primaryDark bg-cover bg-center absolute w-full">
       <ProfileBar />
-      <div className="main-content">
+      <div className="main-content ">
         <Outlet />
       </div>
     </div>
