@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useSocket } from "../../../Providers/SocketProvider";
 import useAuth from "../../../hooks/useAuth";
 import ConversationArea from "../ConversationArea/ConversationArea";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import "./ChatDashboard.module.css";
 import AvailableUsersDesktop from "../AvaiabaleUsers/AvaliableUsersDesktop";
 import AvailableUsersMobile from "../AvaiabaleUsers/AvailableUsersMobile";
@@ -20,7 +20,7 @@ const ChatDashboard = () => {
   };
 
   const friendsArray = currentUser?.data?.friends || [];
-   const BASE_URL = "https://teachat-server.onrender.com";
+  //  const BASE_URL = "https://teachat-server.onrender.com";
   // const BASE_URL = "http://localhost:5000";
 
   const [conversations, setConversations] = useState([]);

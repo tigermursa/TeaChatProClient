@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import useAuth from "../hooks/useAuth";
 import mp3 from "../assets/Sounds/notification-two.mp3";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
 const SocketContext = createContext(null);
 
@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
   const [unreadMessages, setUnreadMessages] = useState({});
   const { currentUser } = useAuth();
   const [friendRequestCount, setFriendRequestCount] = useState(0);
-  const BASE_URL = "https://teachat-server.onrender.com";
+  // const BASE_URL = "https://teachat-server.onrender.com";
   // const BASE_URL = "http://localhost:5000";
 
   useEffect(() => {
