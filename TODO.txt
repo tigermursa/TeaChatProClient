@@ -1,0 +1,5 @@
+1) show error on toast while register
+2) show as table to add new friend list
+3) change profile page like facbook
+4) implement search to find friend
+5) 
