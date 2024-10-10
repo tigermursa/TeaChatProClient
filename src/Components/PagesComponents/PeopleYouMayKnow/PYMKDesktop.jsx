@@ -37,13 +37,13 @@ const PYMKDesktop = () => {
 
   return (
     <div className="bg-people-background h-screen bg-no-repeat bg-cover bg-bottom">
-      <div className="overlay h-screen ">
-        <div className="flex flex-wrap gap-8 justify-center pt-5 ">
+      <div className="overlay h-screen flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center pt-5">
           {/* Card starts from here */}
           {data?.data?.map((user) => (
             <div
               key={user?._id}
-              className="bg-white bg-opacity-0 w-[150px] lg:w-[200px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
+              className="bg-white bg-opacity-0 w-[150px] lg:w-[200px] h-[250px] border border-primary rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg"
             >
               <div className="pt-5 bg-gray-200 bg-opacity-0 flex items-center justify-center">
                 <Img
@@ -52,7 +52,7 @@ const PYMKDesktop = () => {
                   className="w-24 h-24 object-fill bg-center rounded-full"
                 />
               </div>
-              <div className="p-4  text-center">
+              <div className="p-4 text-center">
                 <p className="font-semibold text-gray-100 mb-3 truncate text-sm lg:text-lg">
                   {user?.username}
                 </p>
@@ -61,7 +61,7 @@ const PYMKDesktop = () => {
                   className={`w-full py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
                     sentFriendRequestsArray.includes(user?._id)
                       ? "bg-gray-400 text-gray-800 cursor-not-allowed"
-                      : " bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
+                      : "bg-primary bg-opacity-30 border border-primary text-white hover:bg-primary"
                   }`}
                   disabled={sentFriendRequestsArray.includes(user?._id)}
                 >
