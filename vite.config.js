@@ -6,7 +6,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         // target: "https://teachat-server.onrender.com",
-        target: "http://localhost:5000",
+        target: "https://teachat-server-jj96.onrender.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
